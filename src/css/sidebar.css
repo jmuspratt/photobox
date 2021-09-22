@@ -17,11 +17,11 @@
 }
 
 .sidebar__album-list a:hover {
-  color: blue;
+  color: white;
 }
 
 .sidebar__album-item--active a {
-  color: black;
+  color: white;
 }
 
 @media (min-width: 800px) {

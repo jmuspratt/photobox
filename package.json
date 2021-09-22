@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "eleventy",
+    "build-all": "eleventy && npm run video",
     "start": "eleventy --serve",
     "video": "node convert-videos.js"
   },
@@ -10,7 +11,6 @@
     "@11ty/eleventy": "^0.12.1"
   },
   "devDependencies": {
-    "@11ty/eleventy-img": "^0.10.0",
-    "fluent-ffmpeg": "^2.1.2"
+    "@11ty/eleventy-img": "^0.10.0"
   }
 }
