@@ -2,9 +2,8 @@ const spawn = require('child_process').spawn;
 const fs = require('fs');
 const path = require('path');
 const scanLibrary = require('./scanLibrary.js');
-const FFmpeg = require('fluent-ffmpeg');
 
-// Find all videos with scanLibrary
+// Find all videos with scanLibrary()
 const albumDirs = scanLibrary('src/album-assets/');
 let videos = [];
 albumDirs.forEach(dir =>{
@@ -25,7 +24,20 @@ function resizeVideo(video, quality) {
 
     const p = new Promise((resolve, reject) => {
         console.log('Converting...', video);
-        const ffmpeg = spawn('ffmpeg', ['-i', video.filePath, '-codec:v', 'libx264', '-profile:v', 'main', '-preset', 'slow', '-b:v', '5000k', '-maxrate', '5000k', '-bufsize', '800k', '-vf', `scale=-2:${quality}`, '-threads', '0', '-b:a', '128k', outputPath]);
+        const ffmpeg = spawn('ffmpeg', [
+            '-i', video.filePath, 
+            '-codec:v', 'libx264', 
+            '-profile:v', 'main', 
+            '-preset', 'veryslow', 
+            '-b:v', '5000k', 
+            '-maxrate', '5000k', 
+            '-bufsize', '800k', 
+            '-vf', 
+            `scale=-2:${quality}`, 
+            '-threads', '0', 
+            '-b:a', '128k', 
+            outputPath
+        ]);
         ffmpeg.stderr.on('data', (data) => {
             console.log(`${data}`);
         });
