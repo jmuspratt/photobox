@@ -42,7 +42,6 @@ const scanLibrary = (pathString) => {
                 default: 
                     fileType = null;
             }
-            console.log('extension', extension);
             let textHeading = null;
             let textContents = null;
 
