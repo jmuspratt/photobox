@@ -77,9 +77,8 @@ module.exports = function(eleventyConfig) {
   });
 
 
-  // Pass throug certain assets
+  // Pass through certain assets
   eleventyConfig.addPassthroughCopy("src/css");
-  // eleventyConfig.addPassthroughCopy({ "src/album-assets/**/*.mov": "video" });
 
   // Add shortcodes
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
