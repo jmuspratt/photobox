@@ -52,6 +52,10 @@
     width: 75%;
   }
 
+  .album__block--image {
+    background-color: #eaeaea;
+  }
+
   .album__block--image-portrait {
     float: left;
 

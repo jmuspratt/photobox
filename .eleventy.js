@@ -27,8 +27,9 @@ const path = require('path');
 
     // Use metadata to determine several responsive image attributes
     // https://www.11ty.dev/docs/plugins/image/#url-path
-    const lowResImgSrc = metadata.jpeg[0].url;
-    const isPortrait = metadata.jpeg[0].height > metadata.jpeg[0].width;
+    const lowResImg = metadata.jpeg[0];
+    const aspectRatio = (lowResImg.width / lowResImg.height).toFixed(4);
+    const isPortrait = aspectRatio < 1;
 
     // Srcset
     const srcSet = metadata.jpeg.map(item=> item.srcset).join(', ');
@@ -46,8 +47,9 @@ const path = require('path');
         decoding="async"
         loading="lazy"
         sizes="${sizes}" 
-        src="${lowResImgSrc}"
+        src="${lowResImg.url}"
         srcset="${srcSet}"
+        style="aspect-ratio: ${aspectRatio};"
         >
     </div>`;
   }
