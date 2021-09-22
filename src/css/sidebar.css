@@ -10,11 +10,22 @@
 }
 
 .sidebar__album-list a {
+  color: #888;
   display: block;
   font: normal 24px / 1.2 arial;
   padding: 3px 0;
 }
 
+.sidebar__album-list a:hover {
+  color: blue;
+}
+
 .sidebar__album-item--active a {
   color: black;
+}
+
+@media (min-width: 800px) {
+  .sidebar__album-list {
+    margin-top: auto;
+  }
 }
