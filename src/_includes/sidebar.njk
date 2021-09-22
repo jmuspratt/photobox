@@ -8,6 +8,6 @@
     {% if listAlbum.slug == album.slug  %}
       {% set itemClass = 'sidebar__album-item sidebar__album-item--active' %}
     {% endif %}
-    <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.name }}</a></li>
+    <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.albumName }}</a></li>
 {% endfor %}
 </ul>
