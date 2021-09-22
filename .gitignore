@@ -1,0 +1,5 @@
+.DS_Store
+dist
+node_modules
+src/album-assets/*
+!src/album-assets/.gitkeep

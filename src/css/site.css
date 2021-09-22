@@ -1,0 +1,10 @@
+body {
+  font: 18px / 1.5 arial, sans-serif;
+  margin: 2em;
+  padding-top: 2em;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}

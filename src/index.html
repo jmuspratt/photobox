@@ -1,0 +1,16 @@
+---
+layout: layouts/default.njk
+---
+
+<h1>{{ siteData.name }}</h1>
+
+<h2>Albums and contents from albums.js</h2>
+
+{% for album in albums %}
+
+<h3><a href="albums/{{ album.slug }}">{{ album.slug }}</a></h3>
+{% for file in album.files %}
+<ul>
+  <li>{{ file.name }}</li>
+</ul>
+{% endfor %} {% endfor %}

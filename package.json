@@ -1,0 +1,14 @@
+{
+  "name": "photos-11ty",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^0.12.1"
+  },
+  "devDependencies": {
+    "@11ty/eleventy-img": "^0.10.0"
+  }
+}
