@@ -15,10 +15,6 @@ permalink: "albums/{{ album.slug }}/"
         {% for file in album.files %}
 
             {% set src = ["src/album-assets/", album.slug, '/', file.fileName] | join %}
-<p>base is {{ file.base }}</p>
-<p>src is {{ src }}</p>
-<p>type is {{ file.fileType }}</p>
-<hr />
 
             {# Text #}
             {% if file.fileType == 'text' %}

@@ -22,9 +22,10 @@ const convertVideo = (src, output) => {
 // find all videos
 const albumDirs = scanLibrary('src/album-assets/');
 
+console.log('albumDirs', albumDirs);
 let videos = [];
 albumDirs.forEach(dir =>{
-    const videoFiles = dir.files.filter(file=>file.fileType === 'video');
+    const videoFiles = dir.files.filter(file=> file.fileType === 'video');
     videos.push(...videoFiles);
 });
 
@@ -35,8 +36,8 @@ videos.forEach(video=>{
     const nameWithoutExtension = path.basename(video.name, extension);
     const outputPath = `./dist/video/${nameWithoutExtension}.mp4`;
 
-if (!fs.existsSync(outputPath)) {
-    convertVideo(video.filePath, outputPath);
+    if (!fs.existsSync(outputPath)) {
+        convertVideo(video.filePath, outputPath);
     }
     else {
         console.log(`Video already exists: ${outputPath}`);
