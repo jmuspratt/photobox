@@ -1,37 +1,27 @@
 const path = require('path')
 const fs = require('fs');
-// const scanLibrary = require('../../scanLibrary.js');
-
 
 const scanLibrary = (pathString) => {
-    const exclusions = ['.DS_Store', '.gitkeep'];
+    console.log('scanning library on', pathString);
     const assetPath = path.resolve(process.cwd(), pathString);
+    console.log('asset path is', assetPath);
     const albumDirs = fs.readdirSync(assetPath, 'utf-8');
+    const exclusions = ['.DS_Store', '.gitkeep'];
     const albumSlugs = albumDirs.filter(dir => !exclusions.some(term=> dir.includes(term)));
 
     const assetLibrary = albumSlugs.map(slug=>{
 
         const albumContentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
         const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
-        const albumName = slug.substring(11).replace(/-/g, ' ') ;
+        const name = slug.substring(11).replace(/-/g, ' ');
         
-        const files = albumContents
-        .filter(file=>!exclusions.some(term=> file.includes(term)))
-        .map(fileName=>{
+        const files = albumContents.map(name=>{
 
-            const filePath = `${albumContentsPath}/${fileName}`;
-            const extensionString = path.extname(fileName);
-            const extension = extensionString.split('.')[1].toLowerCase().trim(); 
-            const base = path.basename(fileName, extensionString); 
+            const filePath = `${albumContentsPath}/${name}`;
+            const extension = path.extname(name);
+            const base = path.basename(name, extension); 
 
-
-            console.log('filepath', filePath);
-            console.log('extension', extension);
-            console.log('base--', base, '--');
-
-            
             let fileType = null;
-
             switch(extension) {
                 case 'txt' :
                     fileType = 'text';
@@ -49,21 +39,19 @@ const scanLibrary = (pathString) => {
                     fileType = 'image';
                     break;
                 default: 
-                    fileType = 'unknown';
+                    fileType = null;
             }
-            console.log('fileType is', fileType);
             let textHeading = null;
             let textContents = null;
 
             // text files
             if (['txt', 'md'].includes(extension)) {
-                textHeading = fileName.substring(20).replace(/-/g, ' ').replace(`.${extension}`, '');
-                textContents = fs.readFileSync(`${albumContentsPath}/${fileName}`).toString();
+                textHeading = name.substring(20).replace(/-/g, ' ').replace(`.${extension}`, '');
+                textContents = fs.readFileSync(filePath).toString();
             }
 
             return {
-                fileName,
-                base,
+                name,
                 extension,
                 filePath,
                 fileType,
@@ -74,7 +62,7 @@ const scanLibrary = (pathString) => {
 
         return {
             slug,
-            albumName,
+            name,
             files,
         };
 
@@ -83,11 +71,4 @@ const scanLibrary = (pathString) => {
     return assetLibrary.reverse();
 };
 
-
-
-
-module.exports = function() {
-    const library = scanLibrary('src/album-assets/');
-    // console.log('library from albums.js:', library);
-    return library;
-};
+module.exports = scanLibrary;
