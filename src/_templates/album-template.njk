@@ -13,7 +13,7 @@ permalink: "albums/{{ album.slug }}/"
     <aside class="album__aside">
         {# <p class="album__back"><a href="/">{{ siteData.name }}</a></p> #}
         
-        <h1>{{ album.name }}</h1>
+        {# <h1>{{ album.name }}</h1> #}
 
         <ul class="album__album-list">
         {% for listAlbum in albums %}
@@ -33,44 +33,31 @@ permalink: "albums/{{ album.slug }}/"
 
         {% set src = ["src/album-assets/", album.slug, '/', file.name] | join %}
 
-        {% switch file.extension %}
-        {% case 'txt' %}
-            {% set fileType = 'text' %}
-        {% case 'jpg' %}
-            {% set fileType = 'image' %}
-        {% case 'mov' %}
-            {% set fileType = 'video' %}
-        {% case 'mp4' %}
-            {% set fileType = 'video' %}
-        {% default %}
-            {% set fileType = false %}
-
-        {% endswitch %}
-
-
-    <div class="album__block album__block--{{ fileType }}">
         {# Text #}
-        {% if fileType == 'text' %}
+        {% if file.fileType == 'text' %}
+        <div class="album__block album__block--text">
             <h3 class="album__head">{{ file.textHeading }}</h4>
             {% if file.textContents %}
                 <p class="album__subhead">{{ file.textContents }} </p>
             {% endif %}
+        </div>
         {% endif %}
 
         {# Image #}
-        {% if fileType== 'image' %}
+        {% if file.fileType== 'image' %}
             {% image src, "Alt text" %}
         {% endif %}
 
         {# Video #}
-        {% if fileType == 'video' %}
+        {% if file.fileType == 'video' %}
+        <div class="album__block album__block--video">
             {% set videoOutputUrl = ["/video/", file.name] | join %}
-            <video>
+            <video autoplay loop muted playsinline>
                 <source src="{{ videoOutputUrl }}" />
             </video>
+        </div>
         {% endif %}
 
-    </div>
 
     {% endfor %}
 </main>

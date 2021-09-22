@@ -40,15 +40,16 @@ const path = require('path');
     }
 
     return `
-    <img 
-    alt="${alt}"
-      class="album__image album__image--${isPortrait ? 'portrait': 'landscape'}"
-      decoding="async"
-      loading="lazy"
-      sizes="${sizes}" 
-      src="${lowResImgSrc}"
-      srcset="${srcSet}"
-      >`;
+    <div class="album__block album__block--image album__block--image-${isPortrait ? 'portrait': 'landscape'}">
+      <img 
+        alt="${alt}"
+        decoding="async"
+        loading="lazy"
+        sizes="${sizes}" 
+        src="${lowResImgSrc}"
+        srcset="${srcSet}"
+        >
+    </div>`;
   }
 
 module.exports = function(eleventyConfig) {
