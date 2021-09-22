@@ -14,20 +14,24 @@ const path = require('path');
     }
   
     let metadata = await Image(src, {
-      widths: [900, 1200, 1600],
+      widths: [900, 1200, 2400],
       formats: ["jpeg"],
-      outputDir: "./dist/img/"
+      outputDir: "./dist/img/",
+      filenameFormat:  (id, src, width, format, options) => {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}__${width}.${format}`;
+      }
 
     });
-    console.log(metadata);
   
     // https://www.11ty.dev/docs/plugins/image/#url-path
-    const imgSrc = metadata.jpeg[0].url;
+    const lowResImgSrc = metadata.jpeg[0].url;
     const imgSrcSet = metadata.jpeg.map(item=> item.srcset).join(', ');
 
     return `
     <img 
-      src="${imgSrc}"
+      src="${lowResImgSrc}"
       srcset="${imgSrcSet}"
       alt="${alt}"
       loading="lazy"
@@ -56,10 +60,13 @@ module.exports = function(eleventyConfig) {
     },
     }
   });
+
+
+  // Pass throug certain assets
   eleventyConfig.addPassthroughCopy("src/css");
-  
+  eleventyConfig.addPassthroughCopy({ "src/album-assets/**/*.mov": "video" });
 
-
+  // Add shortcodes
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
 
 

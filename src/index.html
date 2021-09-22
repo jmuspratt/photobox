@@ -8,9 +8,6 @@ layout: layouts/default.njk
 
 {% for album in albums %}
 
-<h3><a href="albums/{{ album.slug }}">{{ album.slug }}</a></h3>
-{% for file in album.files %}
-<ul>
-  <li>{{ file.name }}</li>
-</ul>
-{% endfor %} {% endfor %}
+<li><a href="/albums/{{ album.slug }}">{{ album.slug }}</a></li>
+
+{% endfor %}
