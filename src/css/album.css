@@ -1,0 +1,62 @@
+.album {
+  margin: 8px;
+}
+
+.album__block {
+  clear: both;
+  margin: 0 0 8px;
+}
+
+.album__block--text {
+  float: left;
+  width: 100%;
+}
+
+.album__block:first-child,
+.album__block--text:not(:first-child) {
+  margin-top: 96px;
+}
+
+.album__head {
+  color: black;
+  font: normal 24px / 1.2 arial;
+}
+
+.album__subhead {
+  color: gray;
+  font: normal 24px / 1.2 arial;
+  margin: 2px 0 0;
+}
+
+.album__block {
+  display: block;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 800px) {
+  .album {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+  }
+  .album__aside {
+    position: sticky;
+    top: 101px;
+    width: 25%;
+  }
+  .album__main {
+    width: 75%;
+  }
+
+  .album__block--image-portrait {
+    float: left;
+
+    width: calc(50% - 4px);
+  }
+  .album__block--image-portrait
+    + .album__block--image-portrait:nth-child(even) {
+    clear: none;
+    float: left;
+    margin-left: 8px;
+  }
+}

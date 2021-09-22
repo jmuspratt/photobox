@@ -1,0 +1,20 @@
+.sidebar__title {
+  font: normal 24px / 1.5 arial, sans-serif;
+  margin-bottom: 48px;
+}
+
+.sidebar__album-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar__album-list a {
+  display: block;
+  font: normal 24px / 1.2 arial;
+  padding: 3px 0;
+}
+
+.sidebar__album-item--active a {
+  color: black;
+}
