@@ -25,11 +25,10 @@ const scanLibrary = (pathString) => {
             const base = path.basename(fileName, extensionString); 
 
 
-            console.log('filepath', filePath);
-            console.log('extension', extension);
-            console.log('base--', base, '--');
+            // console.log('filepath', filePath);
+            // console.log('extension', extension);
+            // console.log('base--', base, '--');
 
-            
             let fileType = null;
 
             switch(extension) {
@@ -51,7 +50,7 @@ const scanLibrary = (pathString) => {
                 default: 
                     fileType = 'unknown';
             }
-            console.log('fileType is', fileType);
+            // console.log('fileType is', fileType);
             let textHeading = null;
             let textContents = null;
 
