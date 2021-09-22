@@ -12,11 +12,23 @@ const scanLibrary = (pathString) => {
         const contentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
         const contents = fs.readdirSync(contentsPath, 'utf-8');
         
-        const files = contents.map(item=>{
-            const extension = item.split('.')[1];
+        const files = contents.map(name=>{
+
+            const extension = name.split('.')[1];
+            let textHeading = null;
+            let textContents = null;
+
+            // text files
+            if (['txt', 'md'].includes(extension)) {
+                textHeading = name.substring(20).replace('-', ' ').replace(`.${extension}`, '');
+                textContents = fs.readFileSync(`${contentsPath}/${name}`).toString();
+            }
+
             return {
-                name: item,
-                type: extension,
+                name,
+                extension,
+                textHeading,
+                textContents
             };
         })
 
@@ -29,6 +41,9 @@ const scanLibrary = (pathString) => {
 
     return assetLibrary;
 };
+
+
+
 
 module.exports = function() {
     return scanLibrary('src/album-assets/');

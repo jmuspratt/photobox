@@ -1,10 +1,52 @@
 body {
   font: 18px / 1.5 arial, sans-serif;
-  margin: 2em;
-  padding-top: 2em;
+  margin: 0;
+  padding: 0;
 }
 
-img {
+/* https://developer.mozilla.org/en-US/docs/Web/Media/images/aspect_ratio_mapping */
+img,
+input[type="image"],
+video,
+embed,
+iframe,
+marquee,
+object,
+table {
+  aspect-ratio: attr(width) / attr(height);
   display: block;
   max-width: 100%;
+}
+
+@media (min-width: 800px) {
+  .album {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+  }
+  .album__aside {
+    position: sticky;
+    top: 50px;
+    width: 25%;
+  }
+  .album__main {
+    width: 75%;
+  }
+}
+
+.album__block {
+  margin-bottom: 8px;
+}
+
+.album__head {
+  color: black;
+  margin: 30px 0 0;
+  font: bold 18px / 1.2 arial;
+}
+
+.album__subhead {
+  color: gray;
+  font: normal 18px / 1.2 arial;
+  margin: 0;
 }

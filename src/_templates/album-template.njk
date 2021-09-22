@@ -7,22 +7,70 @@ pagination:
 permalink: "albums/{{ album.slug }}/"
 ---
 
-<h3>Album page for {{ album.slug }} </h3>
 
-{% for file in album.files %}
-  
- <h4>{{ file.name }}</h4>
-
-    {% set filePath = ["src/album-assets/", album.slug, '/', file.name] | join %}
-    <p>~ path is {{ filePath }}</p>
-    <p>~ type is {{ file.type }}</p>
-
-    {% if file.type == 'txt' %}
-        <p>text file</p>
-    {% else %}
-        {% image filePath, "Alt text" %}
-    {% endif %}
+<div class="album">
 
 
-<hr />
-{% endfor %}
+    <aside class="album__aside">
+    <p class="album__back"><a href="/">{{ siteData.name }}</a></p>
+        <h1>{{ album.slug }}</h1>
+
+        <ul>
+        {% for album in albums %}
+            <li><a href="/albums/{{ album.slug }}">{{ album.slug }}</a></li>
+        {% endfor %}
+        </ul>
+
+    </aside>
+
+
+<main class="album__main">
+
+    {% for file in album.files %}
+
+        {% set src = ["src/album-assets/", album.slug, '/', file.name] | join %}
+
+        {% switch file.extension %}
+        {% case 'txt' %}
+            {% set fileType = 'text' %}
+        {% case 'jpg' %}
+            {% set fileType = 'image' %}
+        {% case 'mov' %}
+            {% set fileType = 'video' %}
+        {% case 'mp4' %}
+            {% set fileType = 'video' %}
+        {% default %}
+            {% set fileType = false %}
+
+        {% endswitch %}
+
+
+    <div class="album__block album__block--{{ fileType }}">
+        {# Text #}
+        {% if fileType == 'text' %}
+            <h3 class="album__head">{{ file.textHeading }}</h4>
+            {% if file.textContents %}
+                <p class="album__subhead">{{ file.textContents }} </p>
+            {% endif %}
+        {% endif %}
+
+        {# Image #}
+        {% if fileType== 'image' %}
+            {% image src, "Alt text" %}
+        {% endif %}
+
+        {# Video #}
+        {% if fileType == 'video' %}
+            {% set videoOutputUrl = ["/video/", file.name] | join %}
+            <video>
+                <source src="{{ videoOutputUrl }}" />
+            </video>
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+</main>
+
+
+</div>
