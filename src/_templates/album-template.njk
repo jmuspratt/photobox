@@ -10,17 +10,20 @@ permalink: "albums/{{ album.slug }}/"
 
 <div class="album">
 
-
     <aside class="album__aside">
-    <p class="album__back"><a href="/">{{ siteData.name }}</a></p>
-        <h1>{{ album.slug }}</h1>
+        {# <p class="album__back"><a href="/">{{ siteData.name }}</a></p> #}
+        
+        <h1>{{ album.name }}</h1>
 
-        <ul>
-        {% for album in albums %}
-            <li><a href="/albums/{{ album.slug }}">{{ album.slug }}</a></li>
+        <ul class="album__album-list">
+        {% for listAlbum in albums %}
+            {% set itemClass = 'albums__album-item' %}
+            {% if listAlbum.slug == album.slug  %}
+              {% set itemClass = 'albums__album-item albums__album-item--active' %}
+            {% endif %}
+            <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.name }}</a></li>
         {% endfor %}
         </ul>
-
     </aside>
 
 
