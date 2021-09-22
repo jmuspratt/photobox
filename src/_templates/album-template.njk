@@ -10,45 +10,44 @@ permalink: "albums/{{ album.slug }}/"
 
 <div class="album">
 
+    <main class="album__main">
+
+        {% for file in album.files %}
+
+            {% set src = ["src/album-assets/", album.slug, '/', file.name] | join %}
+
+            {# Text #}
+            {% if file.fileType == 'text' %}
+            <div class="album__block album__block--text">
+                <h3 class="album__head">{{ file.textHeading }}</h4>
+                {% if file.textContents %}
+                    <p class="album__subhead">{{ file.textContents }} </p>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            {# Image #}
+            {% if file.fileType== 'image' %}
+                {% image src, "" %}
+            {% endif %}
+
+            {# Video #}
+            {% if file.fileType == 'video' %}
+            <div class="album__block album__block--video">
+                {% set videoOutputUrl = ["/video/", file.name] | join %}
+                <video autoplay loop muted playsinline>
+                    <source src="{{ videoOutputUrl }}" />
+                </video>
+            </div>
+            {% endif %}
+
+
+        {% endfor %}
+    </main>
+
     <aside class="album__aside">
         {% include "sidebar.njk" %}
     </aside>
-
-
-<main class="album__main">
-
-    {% for file in album.files %}
-
-        {% set src = ["src/album-assets/", album.slug, '/', file.name] | join %}
-
-        {# Text #}
-        {% if file.fileType == 'text' %}
-        <div class="album__block album__block--text">
-            <h3 class="album__head">{{ file.textHeading }}</h4>
-            {% if file.textContents %}
-                <p class="album__subhead">{{ file.textContents }} </p>
-            {% endif %}
-        </div>
-        {% endif %}
-
-        {# Image #}
-        {% if file.fileType== 'image' %}
-            {% image src, "" %}
-        {% endif %}
-
-        {# Video #}
-        {% if file.fileType == 'video' %}
-        <div class="album__block album__block--video">
-            {% set videoOutputUrl = ["/video/", file.name] | join %}
-            <video autoplay loop muted playsinline>
-                <source src="{{ videoOutputUrl }}" />
-            </video>
-        </div>
-        {% endif %}
-
-
-    {% endfor %}
-</main>
 
 
 </div>

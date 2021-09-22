@@ -63,7 +63,7 @@ const scanLibrary = (pathString) => {
 
     });
 
-    return assetLibrary;
+    return assetLibrary.reverse();
 };
 
 
