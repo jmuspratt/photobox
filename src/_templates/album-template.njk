@@ -1,0 +1,28 @@
+---
+layout: layouts/default.njk
+pagination:
+    data: albums
+    size: 1
+    alias: album
+permalink: "albums/{{ album.slug }}/"
+---
+
+<h3>Album page for {{ album.slug }} </h3>
+
+{% for file in album.files %}
+  
+ <h4>{{ file.name }}</h4>
+
+    {% set filePath = ["src/album-assets/", album.slug, '/', file.name] | join %}
+    <p>~ path is {{ filePath }}</p>
+    <p>~ type is {{ file.type }}</p>
+
+    {% if file.type == 'txt' %}
+        <p>text file</p>
+    {% else %}
+        {% image filePath, "Alt text" %}
+    {% endif %}
+
+
+<hr />
+{% endfor %}
