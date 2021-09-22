@@ -18,8 +18,9 @@ const scanLibrary = (pathString) => {
         const files = albumContents.map(name=>{
 
             const filePath = `${albumContentsPath}/${name}`;
-            const extension = path.extname(name);
-            const base = path.basename(name, extension); 
+            const extRaw = path.extname(name);
+            const base = path.basename(name, extRaw); 
+            const extension = extRaw.toLowerCase().replace('.', '');
 
             let fileType = null;
             switch(extension) {
@@ -41,6 +42,7 @@ const scanLibrary = (pathString) => {
                 default: 
                     fileType = null;
             }
+            console.log('extension', extension);
             let textHeading = null;
             let textContents = null;
 
