@@ -38,20 +38,20 @@ function resizeVideo(video, quality) {
 
 function processVideos() {
     let video = videos.pop();
-    const outputPath = getOutputPath(video);
-
+    
     if (video) {
-    if (fs.existsSync(outputPath)) {
-        console.log(`Video already exists at ${outputPath}`);
-        processVideos();
-    } else {
-        resizeVideo(video, 720)
-        .then(() => {
-            console.log(`Completed Video Number - ${video}`);
+        const outputPath = getOutputPath(video);
+        if (fs.existsSync(outputPath)) {
+            console.log(`Video already exists at ${outputPath}`);
             processVideos();
-        });
+        } else {
+            resizeVideo(video, 720)
+            .then(() => {
+                console.log(`Completed Video Number - ${video}`);
+                processVideos();
+            });
+        }
     }
-}
 }
 
 processVideos();
