@@ -2,7 +2,6 @@ const path = require('path')
 const fs = require('fs');
 // const scanLibrary = require('../../scanLibrary.js');
 
-
 const scanLibrary = (pathString) => {
     const exclusions = ['.DS_Store', '.gitkeep'];
     const assetPath = path.resolve(process.cwd(), pathString);
@@ -50,7 +49,6 @@ const scanLibrary = (pathString) => {
                 default: 
                     fileType = 'unknown';
             }
-            // console.log('fileType is', fileType);
             let textHeading = null;
             let textContents = null;
 
@@ -87,6 +85,5 @@ const scanLibrary = (pathString) => {
 
 module.exports = function() {
     const library = scanLibrary('src/album-assets/');
-    // console.log('library from albums.js:', library);
     return library;
 };
