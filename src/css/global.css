@@ -1,0 +1,26 @@
+/* https://developer.mozilla.org/en-US/docs/Web/Media/images/aspect_ratio_mapping */
+img,
+input[type="image"],
+video,
+embed,
+iframe,
+marquee,
+object,
+table {
+  aspect-ratio: attr(width) / attr(height);
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font: 24px / 1.5 arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:link,
+a:visited {
+  color: blue;
+  text-decoration: none;
+}

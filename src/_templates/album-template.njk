@@ -11,19 +11,7 @@ permalink: "albums/{{ album.slug }}/"
 <div class="album">
 
     <aside class="album__aside">
-        {# <p class="album__back"><a href="/">{{ siteData.name }}</a></p> #}
-        
-        {# <h1>{{ album.name }}</h1> #}
-
-        <ul class="album__album-list">
-        {% for listAlbum in albums %}
-            {% set itemClass = 'albums__album-item' %}
-            {% if listAlbum.slug == album.slug  %}
-              {% set itemClass = 'albums__album-item albums__album-item--active' %}
-            {% endif %}
-            <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.name }}</a></li>
-        {% endfor %}
-        </ul>
+        {% include "sidebar.njk" %}
     </aside>
 
 
@@ -45,7 +33,7 @@ permalink: "albums/{{ album.slug }}/"
 
         {# Image #}
         {% if file.fileType== 'image' %}
-            {% image src, "Alt text" %}
+            {% image src, "" %}
         {% endif %}
 
         {# Video #}

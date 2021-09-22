@@ -2,12 +2,6 @@
 layout: layouts/default.njk
 ---
 
-<h1>{{ siteData.name }}</h1>
-
-<ul class="album__album-list">
-  {% for listAlbum in albums %}
-  <li class="albums__album-item">
-    <a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.name }}</a>
-  </li>
-  {% endfor %}
-</ul>
+<div class="album">
+  <aside class="album__aside">{% include "sidebar.njk" %}</aside>
+</div>
