@@ -24,18 +24,30 @@ const path = require('path');
       }
 
     });
-  
+
+    // Use metadata to determine several responsive image attributes
     // https://www.11ty.dev/docs/plugins/image/#url-path
     const lowResImgSrc = metadata.jpeg[0].url;
-    const imgSrcSet = metadata.jpeg.map(item=> item.srcset).join(', ');
+    const isPortrait = metadata.jpeg[0].height > metadata.jpeg[0].width;
+
+    // Srcset
+    const srcSet = metadata.jpeg.map(item=> item.srcset).join(', ');
+
+    // Sizes
+    let sizes="(min-width: 800px) 75vw, 100vw";  // Landscape images
+    if (isPortrait) {
+        sizes="(min-width: 800px) 38vw, 100vw";  // Portrait images are half wide
+    }
 
     return `
     <img 
-      src="${lowResImgSrc}"
-      srcset="${imgSrcSet}"
-      alt="${alt}"
-      loading="lazy"
+    alt="${alt}"
+      class="album__image album__image--${isPortrait ? 'portrait': 'landscape'}"
       decoding="async"
+      loading="lazy"
+      sizes="${sizes}" 
+      src="${lowResImgSrc}"
+      srcset="${srcSet}"
       >`;
   }
 

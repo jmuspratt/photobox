@@ -9,10 +9,11 @@ const scanLibrary = (pathString) => {
 
     const assetLibrary = albumSlugs.map(slug=>{
 
-        const contentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
-        const contents = fs.readdirSync(contentsPath, 'utf-8');
+        const albumContentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
+        const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
+        const name = slug.substring(11).replace('-', ' ');
         
-        const files = contents.map(name=>{
+        const files = albumContents.map(name=>{
 
             const extension = name.split('.')[1];
             let textHeading = null;
@@ -21,7 +22,7 @@ const scanLibrary = (pathString) => {
             // text files
             if (['txt', 'md'].includes(extension)) {
                 textHeading = name.substring(20).replace('-', ' ').replace(`.${extension}`, '');
-                textContents = fs.readFileSync(`${contentsPath}/${name}`).toString();
+                textContents = fs.readFileSync(`${albumContentsPath}/${name}`).toString();
             }
 
             return {
@@ -34,6 +35,7 @@ const scanLibrary = (pathString) => {
 
         return {
             slug,
+            name,
             files,
         };
 

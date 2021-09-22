@@ -4,6 +4,12 @@ body {
   padding: 0;
 }
 
+a,
+a:visited {
+  color: blue;
+  text-decoration: none;
+}
+
 /* https://developer.mozilla.org/en-US/docs/Web/Media/images/aspect_ratio_mapping */
 img,
 input[type="image"],
@@ -35,6 +41,20 @@ table {
   }
 }
 
+.album__album-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 10px;
+}
+
+.album__album-list a {
+  padding: 3px 0;
+}
+
+.albums__album-item--active a {
+  color: black;
+}
+
 .album__block {
   margin-bottom: 8px;
 }
@@ -49,4 +69,10 @@ table {
   color: gray;
   font: normal 18px / 1.2 arial;
   margin: 0;
+}
+
+@media (min-width: 800px) {
+  .album__image--portrait {
+    width: 50%;
+  }
 }
