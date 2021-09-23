@@ -33,6 +33,9 @@ const scanLibrary = (pathString) => {
                 case 'mp4' :
                     fileType = 'video';
                     break;
+                case 'jpeg' :
+                    fileType = 'image';
+                    break;
                 case 'jpg' :
                     fileType = 'image';
                     break;

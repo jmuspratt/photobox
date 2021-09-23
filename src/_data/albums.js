@@ -1,5 +1,6 @@
 const scanLibrary = require('../../scanLibrary.js');
 
 module.exports = function() {
-    return scanLibrary('src/album-assets/');
+    const lib = scanLibrary('src/album-assets/');
+    return lib;
 };
