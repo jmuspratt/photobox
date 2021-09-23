@@ -1,5 +1,5 @@
 .sidebar__title {
-  font: normal 24px / 1.5 arial, sans-serif;
+  font: normal 21px / 1.5 arial, sans-serif;
   margin-bottom: 48px;
 }
 
@@ -12,16 +12,16 @@
 .sidebar__album-list a {
   color: #888;
   display: block;
-  font: normal 24px / 1.2 arial;
+  font: normal 21px / 1.2 arial;
   padding: 3px 0;
 }
 
 .sidebar__album-list a:hover {
-  color: blue;
+  color: white;
 }
 
 .sidebar__album-item--active a {
-  color: black;
+  color: white;
 }
 
 @media (min-width: 800px) {

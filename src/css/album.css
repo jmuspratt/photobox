@@ -17,13 +17,13 @@
 }
 
 .album__head {
-  color: black;
-  font: normal 24px / 1.2 arial;
+  color: white;
+  font: normal 21px / 1.2 arial;
 }
 
 .album__subhead {
   color: gray;
-  font: normal 24px / 1.2 arial;
+  font: normal 21px / 1.2 arial;
   margin: 2px 0 0;
 }
 

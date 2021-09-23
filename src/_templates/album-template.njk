@@ -14,7 +14,6 @@ permalink: "albums/{{ album.slug }}/"
 
         {% for file in album.files %}
 
-            {% set src = ["src/album-assets/", album.slug, '/', file.name] | join %}
 
             {# Text #}
             {% if file.fileType == 'text' %}
@@ -27,14 +26,15 @@ permalink: "albums/{{ album.slug }}/"
             {% endif %}
 
             {# Image #}
-            {% if file.fileType== 'image' %}
+            {% if file.fileType == 'image' %}
+                {% set src = ["src/album-assets/", album.slug, '/', file.fileName] | join %}
                 {% image src, "" %}
             {% endif %}
 
             {# Video #}
-            {% if file.fileType == 'video' %}
+            {% if file.fileType == 'video' and file.base %}
             <div class="album__block album__block--video">
-                {% set videoOutputUrl = ["/video/", file.name] | join %}
+                {% set videoOutputUrl = ["/video/", file.base, ".mp4"] | join %}
                 <video autoplay loop muted playsinline>
                     <source src="{{ videoOutputUrl }}" />
                 </video>
