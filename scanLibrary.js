@@ -14,7 +14,6 @@ const scanLibrary = (pathString) => {
         const albumName = slug.substring(11).replace(/-/g, ' ');
         
         const files = albumContents.map(fileName=>{
-
             const filePath = `${albumContentsPath}/${fileName}`;
             const extRaw = path.extname(fileName);
             const extension = extRaw.toLowerCase().replace('.', '');

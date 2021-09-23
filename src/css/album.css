@@ -22,7 +22,7 @@
 }
 
 .album__subhead {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.375);
   font: normal 21px / 1.2 arial;
   margin: 2px 0 0;
 }
@@ -36,15 +36,18 @@
   appearance: none;
   background-color: transparent;
   border: 0;
-  border-bottom: 2px solid white;
-  color: white;
+  color: rgba(255, 255, 255, 0.375);
   cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
   display: block;
-  margin: 8px 0 16px 0;
-  padding: 0;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 8px 0 24px 0;
+  padding: 2px 0;
   text-transform: uppercase;
+}
+
+.album__video-toggle:hover {
+  color: white;
 }
 
 @media (min-width: 800px) {
