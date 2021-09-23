@@ -76,11 +76,9 @@
 
   .album__block--image-portrait {
     float: left;
-
     width: calc(50% - 4px);
   }
-  .album__block--image-portrait
-    + .album__block--image-portrait:nth-child(even) {
+  .album__block--image-portrait + .album__block--image-portrait {
     clear: none;
     float: left;
     margin-left: 8px;
