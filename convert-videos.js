@@ -18,6 +18,7 @@ function getOutputPath(video) {
     return `./dist/video/${nameWithoutExtension}.mp4`;
 }
 
+// https://blog.founderatwork.com/how-to-batch-process-video-conversions-using-ffmpeg-with-node-js/
 // https://gist.github.com/rick4470/0e051cbceae6fd591fd3c02a8ab417cc
 function resizeVideo(video, quality) {
     const outputPath = getOutputPath(video)
