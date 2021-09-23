@@ -22,7 +22,7 @@
 }
 
 .album__subhead {
-  color: gray;
+  color: rgba(255, 255, 255, 0.25);
   font: normal 21px / 1.2 arial;
   margin: 2px 0 0;
 }
@@ -42,7 +42,7 @@
   font-size: 12px;
   font-weight: bold;
   display: block;
-  margin: 8px 0 00;
+  margin: 8px 0 16px 0;
   padding: 0;
   text-transform: uppercase;
 }
@@ -68,7 +68,7 @@
   }
 
   .album__block--image {
-    background-color: #eaeaea;
+    background-color: rgba(white, 0.08);
   }
 
   .album__block--image-portrait {
