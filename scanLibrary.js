@@ -2,25 +2,23 @@ const path = require('path')
 const fs = require('fs');
 
 const scanLibrary = (pathString) => {
-    console.log('scanning library on', pathString);
-    const assetPath = path.resolve(process.cwd(), pathString);
-    console.log('asset path is', assetPath);
-    const albumDirs = fs.readdirSync(assetPath, 'utf-8');
     const exclusions = ['.DS_Store', '.gitkeep'];
+    const assetPath = path.resolve(process.cwd(), pathString);
+    const albumDirs = fs.readdirSync(assetPath, 'utf-8');
     const albumSlugs = albumDirs.filter(dir => !exclusions.some(term=> dir.includes(term)));
 
     const assetLibrary = albumSlugs.map(slug=>{
 
         const albumContentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
         const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
-        const name = slug.substring(11).replace(/-/g, ' ');
+        const albumName = slug.substring(11).replace(/-/g, ' ');
         
-        const files = albumContents.map(name=>{
+        const files = albumContents.map(fileName=>{
 
-            const filePath = `${albumContentsPath}/${name}`;
-            const extRaw = path.extname(name);
-            const base = path.basename(name, extRaw); 
+            const filePath = `${albumContentsPath}/${fileName}`;
+            const extRaw = path.extname(fileName);
             const extension = extRaw.toLowerCase().replace('.', '');
+            const fileBase = path.basename(fileName, extRaw); 
 
             let fileType = null;
             switch(extension) {
@@ -47,12 +45,13 @@ const scanLibrary = (pathString) => {
 
             // text files
             if (['txt', 'md'].includes(extension)) {
-                textHeading = name.substring(20).replace(/-/g, ' ').replace(`.${extension}`, '');
+                textHeading = fileName.substring(20).replace(/-/g, ' ').replace(`.${extension}`, '');
                 textContents = fs.readFileSync(filePath).toString();
             }
 
             return {
-                name,
+                fileBase,
+                fileName,
                 extension,
                 filePath,
                 fileType,
@@ -62,8 +61,8 @@ const scanLibrary = (pathString) => {
         })
 
         return {
+            albumName,
             slug,
-            name,
             files,
         };
 

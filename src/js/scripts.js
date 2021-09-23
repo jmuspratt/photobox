@@ -22,15 +22,10 @@ class VideoToggle {
 
         });
     }
-
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
     const videoBlocks = document.querySelectorAll('.js-video-block');
-    console.log('blcoks', videoBlocks);
-
     if (videoBlocks) {
         videoBlocks.forEach(videoBlock=>{
             new VideoToggle(videoBlock);
