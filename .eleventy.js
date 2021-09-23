@@ -9,7 +9,7 @@ const path = require('path');
   const Image = require("@11ty/eleventy-img");
   async function imageShortcode(src, alt) {
     if(alt === undefined) {
-      // You bet we throw an error on missing alt (alt="" works okay)
+      // Throw error on missing alt attribute (alt="" works okay)
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
     }
   
@@ -26,7 +26,6 @@ const path = require('path');
     });
 
     // Use metadata to determine several responsive image attributes
-    // https://www.11ty.dev/docs/plugins/image/#url-path
     const lowResImg = metadata.jpeg[0];
     const aspectRatio = (lowResImg.width / lowResImg.height).toFixed(4);
     const isPortrait = aspectRatio < 1;
@@ -35,9 +34,10 @@ const path = require('path');
     const srcSet = metadata.jpeg.map(item=> item.srcset).join(', ');
 
     // Sizes
+    // Layout goes to 75% width when viewport reeaches 800px
     let sizes="(min-width: 800px) 75vw, 100vw";  // Landscape images
     if (isPortrait) {
-        sizes="(min-width: 800px) 38vw, 100vw";  // Portrait images are half wide
+      sizes="(min-width: 800px) 38vw, 100vw";  // Portrait images are half width
     }
 
     return `
