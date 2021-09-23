@@ -5,10 +5,10 @@ class VideoToggle {
         const btn = videoBlock.querySelector('.js-video-toggle')
 
         btn.addEventListener('click', (e) => {
-            console.log('click', e);
             e.preventDefault();
             video.toggleAttribute('controls');
             video.muted = !video.muted;
+            video.play();
 
             const msgA = btn.getAttribute('data-message-a');
             const msgB = btn.getAttribute('data-message-b');

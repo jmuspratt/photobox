@@ -10,7 +10,7 @@
 }
 
 .sidebar__album-list a {
-  color: #888;
+  color: rgba(255, 255, 255, 0.25);
   display: block;
   font: normal 21px / 1.2 arial;
   padding: 3px 0;

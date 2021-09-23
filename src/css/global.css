@@ -26,4 +26,5 @@ a:link,
 a:visited {
   color: white;
   text-decoration: none;
+  transition: 0.6s ease;
 }
