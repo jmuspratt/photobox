@@ -33,11 +33,12 @@ permalink: "albums/{{ album.slug }}/"
 
             {# Video #}
             {% if file.fileType == 'video' and file.base %}
-            <div class="album__block album__block--video">
+            <div class="album__block album__block--video js-video-block">
                 {% set videoOutputUrl = ["/video/", file.base, ".mp4"] | join %}
                 <video autoplay loop muted playsinline>
                     <source src="{{ videoOutputUrl }}" />
                 </video>
+                <button class="album__video-toggle js-video-toggle" data-message-a="Play with sound" data-message-b="Mute">Play with sound</button>
             </div>
             {% endif %}
 

@@ -32,6 +32,21 @@
   margin-bottom: 8px;
 }
 
+.album__video-toggle {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid white;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  margin: 8px 0 00;
+  padding: 0;
+  text-transform: uppercase;
+}
+
 @media (min-width: 800px) {
   .album {
     align-items: stretch;
