@@ -1,9 +1,11 @@
 {
-  "name": "photos-11ty",
+  "name": "photobox",
   "version": "1.0.0",
   "scripts": {
     "build": "eleventy",
-    "start": "eleventy --serve"
+    "build-all": "eleventy && npm run video",
+    "start": "eleventy --serve",
+    "video": "node convert-videos.js"
   },
   "dependencies": {
     "@11ty/eleventy": "^0.12.1"
