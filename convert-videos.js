@@ -13,9 +13,7 @@ albumDirs.forEach(dir =>{
 
 
 function getOutputPath(video) {
-    const extension = path.extname(video.name);
-    const nameWithoutExtension = path.basename(video.name, extension);
-    return `./dist/video/${nameWithoutExtension}.mp4`;
+    return `./dist/video/${video.fileBase}.mp4`;
 }
 
 // https://blog.founderatwork.com/how-to-batch-process-video-conversions-using-ffmpeg-with-node-js/
@@ -24,7 +22,7 @@ function resizeVideo(video, quality) {
     const outputPath = getOutputPath(video)
 
     const p = new Promise((resolve, reject) => {
-        console.log('Converting...', video);
+        console.log('Converting...', video.fileName);
         const ffmpeg = spawn('ffmpeg', [
             '-i', video.filePath, 
             '-codec:v', 'libx264', 
