@@ -3,3 +3,4 @@ dist
 node_modules
 src/album-assets/*
 !src/album-assets/.gitkeep
+!src/album-assets/2008-08-01-Summer-Hikes
