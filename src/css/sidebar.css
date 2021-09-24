@@ -1,6 +1,15 @@
+.sidebar {
+  align-items: flex-start;
+  flex-direction: column;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
 .sidebar__title {
-  font: normal 21px / 1.5 arial, sans-serif;
-  margin-bottom: 48px;
+  margin: 2em 0 1em;
+  font-weight: normal;
 }
 
 .sidebar__album-list {
@@ -10,21 +19,21 @@
 }
 
 .sidebar__album-list a {
-  color: rgba(255, 255, 255, 0.375);
+  color: var(--c-gray);
   display: block;
-  font: normal 21px / 1.2 arial;
-  padding: 3px 0;
+  padding: 0;
 }
 
-.sidebar__album-list a:hover {
-  color: white;
-}
-
+.sidebar__album-list a:hover,
 .sidebar__album-item--active a {
-  color: white;
+  color: var(--c-link);
 }
 
 @media (min-width: 800px) {
+  .sidebar__title {
+    margin: 0 0 2em;
+  }
+
   .sidebar__album-list {
     margin-top: auto;
   }
