@@ -7,10 +7,8 @@
     "start": "eleventy --serve",
     "video": "node convert-videos.js"
   },
-  "dependencies": {
-    "@11ty/eleventy": "^0.12.1"
-  },
   "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-img": "^0.10.0"
   }
 }
