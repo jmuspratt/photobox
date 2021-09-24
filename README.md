@@ -27,4 +27,4 @@ A static site script that generates web albums from directories of images and vi
 
 1. Run `npm run build` to generate the site pages and optimized images.
 2. To build the site files _and_ process videos, run `npm run build-all`.
-3. Upload the contents of `_dist` to your site.
+3. Upload the contents of `dist` to your site.

@@ -58,7 +58,7 @@ function processVideos() {
         } else {
             resizeVideo(video, 720)
             .then(() => {
-                console.log(`Completed Video Number - ${video}`);
+                console.log(`Video processed and saved to ${outputPath}`);
                 processVideos();
             });
         }
