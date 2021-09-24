@@ -6,7 +6,8 @@ Built with [11ty](https://www.11ty.dev) and some help from the [link-in-bio-11ty
 
 ![](screenshots/folder.png)
 
-![](screenshots/album.png)
+![](screenshots/album1.png)
+![](screenshots/album2.png)
 
 ## Viewing locally
 
