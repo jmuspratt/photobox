@@ -1,14 +1,16 @@
-<h1 class="sidebar__title">
-  <a href="/">{{ siteData.name }}</a>
-</h1>
+<div class="sidebar">
+  <h1 class="sidebar__title">
+    <a href="/">{{ siteData.name }}</a>
+  </h1>
 
 
-<ul class="sidebar__album-list">
-{% for listAlbum in albums %}
-    {% set itemClass = 'sidebar__album-item' %}
-    {% if listAlbum.slug == album.slug  %}
-      {% set itemClass = 'sidebar__album-item sidebar__album-item--active' %}
-    {% endif %}
-    <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.albumName }}</a></li>
-{% endfor %}
-</ul>
+  <ul class="sidebar__album-list">
+  {% for listAlbum in albums %}
+      {% set itemClass = 'sidebar__album-item' %}
+      {% if listAlbum.slug == album.slug  %}
+        {% set itemClass = 'sidebar__album-item sidebar__album-item--active' %}
+      {% endif %}
+      <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.albumName }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
