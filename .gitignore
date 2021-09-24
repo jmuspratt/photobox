@@ -1,4 +1,5 @@
 .DS_Store
+_data/.siteData.json
 dist
 node_modules
 src/album-assets/*
