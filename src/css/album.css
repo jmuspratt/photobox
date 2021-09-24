@@ -23,6 +23,7 @@
 
 .album__head {
   color: var(--c-text-color);
+  line-height: 1.2;
 }
 
 .album__subhead {
