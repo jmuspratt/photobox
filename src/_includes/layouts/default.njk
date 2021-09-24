@@ -1,14 +1,28 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>{{ siteData.name }}</title>
+
+  {% set pageTitle = siteData.name %}
+  {% set pageUrl = siteData.publicUrl ~ page.url %}
+
+  {% if album %}
+    {% set pageTitle = album.albumName ~ ' – ' ~ siteData.name %}
+  {% endif %}
+
+    <title>{{ pageTitle }}</title>
     <meta charset="utf-8">
+    <meta name="robots" content="noindex" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="/css/site.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ siteData.description }}">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/css/site.css" />
+      <!-- OG -->
+      <meta property="og:title" content="{{ pageTitle }}" />
+      <meta property="og:site_name" content="{{ siteData.name }}" />
+      <meta property="og:url" content="{{ pageUrl }}" />
+
   </head>
   <body>
     
