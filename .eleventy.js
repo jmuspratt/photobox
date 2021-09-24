@@ -80,6 +80,7 @@ module.exports = function(eleventyConfig) {
   // Pass through certain assets
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
 
   // Add shortcodes
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
