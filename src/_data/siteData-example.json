@@ -1,0 +1,8 @@
+{
+  "name": "My Photography",
+  "description": "Photos from my travels",
+  "publicUrl": "https://photos.example.com",
+  "createdBy": {
+    "name": "My name"
+  }
+}
