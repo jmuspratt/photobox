@@ -1,6 +1,6 @@
 # Photobox
 
-A static site script that generates web albums from directories of images and videos. Built with [11ty](https://www.11ty.dev) and some help from the [link-in-bio-11ty](https://github.com/clottman/link-in-bio-11ty).
+A static site script that generates web albums from directories of images and videos. Built with [11ty](https://www.11ty.dev).
 
 ![](screenshots/folder.png)
 ![](screenshots/album1.png)
