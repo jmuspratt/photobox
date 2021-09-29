@@ -28,3 +28,17 @@ A static site script that generates web albums from directories of images and vi
 1. Run `npm run build` to generate the site pages and optimized images.
 2. To build the site files _and_ process videos, run `npm run build-all`.
 3. Upload the contents of `dist` to your site.
+
+## Development roadmap
+
+### Priority
+
+- [ ] Display start date for each album using its directory prefix
+- [ ] Optionally show date for images/video (on hover?)
+- [ ] Light/Dark themes
+- [ ] Add OG image for album pages
+
+### Maybe
+
+- [ ] RSS / Atom / JSON feeds
+- [ ] Remove orphaned optimized videos on build
