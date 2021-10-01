@@ -34,10 +34,10 @@ const path = require('path');
     const srcSet = metadata.jpeg.map(item=> item.srcset).join(', ');
 
     // Sizes
-    // Layout goes to 75% width when viewport reeaches 800px
-    let sizes="(min-width: 800px) 75vw, 100vw";  // Landscape images
+    // Layout goes to 75% width when viewport reaches 800px
+    let sizes="(min-width: 800px) calc(.75 * (100vw - 16px)), calc(100vw - 16px)";  // Landscape images
     if (isPortrait) {
-      sizes="(min-width: 800px) 38vw, 100vw";  // Portrait images are half width
+      sizes="(min-width: 800px) calc(37.5 * (100vw - 24px), calc(100vw - 16px)";  // Portrait images are half width
     }
 
     return `
