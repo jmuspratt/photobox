@@ -14,7 +14,7 @@ const path = require('path');
     }
   
     let metadata = await Image(src, {
-      widths: [900, 1200, 2400],
+      widths: [800, 1600, 2400],
       formats: ["jpeg"],
       outputDir: "./dist/img/",
       filenameFormat:  (id, src, width, format, options) => {
