@@ -18,6 +18,14 @@ const scanLibrary = (pathString) => {
             const extRaw = path.extname(fileName);
             const extension = extRaw.toLowerCase().replace('.', '');
             const fileBase = path.basename(fileName, extRaw); 
+            const fileID = fileName.replace(/\./g, '-');
+            const fileDate = new Date(fileBase.substring(0, 10));
+            const fileDateString = fileDate.toLocaleDateString('en-US', { 
+                month: 'long',
+                day: 'numeric', 
+                year: 'numeric',
+            });
+
 
             let fileType = null;
             switch(extension) {
@@ -54,6 +62,8 @@ const scanLibrary = (pathString) => {
             return {
                 fileBase,
                 fileName,
+                fileID,
+                fileDateString,
                 extension,
                 filePath,
                 fileType,

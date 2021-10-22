@@ -16,23 +16,28 @@ permalink: "albums/{{ album.slug }}/"
 
         {# Text #}
         {% if file.fileType == 'text' %}
-        <div class="album__block album__block--text">
-            <h3 class="album__head">{{ file.textHeading }}</h4>
-            {% if file.textContents %}
-                <p class="album__subhead">{{ file.textContents }} </p>
-            {% endif %}
+        <div class="album__block album__block--text" id="{{ file.fileID }}">
+            <hgroup class="album__hgroup">
+                <h3 class="album__head">{{ file.textHeading }}</h4>
+                {% if file.textContents %}
+                    <p class="album__subhead">{{ file.textContents }} </p>
+                {% endif %}
+            </hgroup>
+            <p class="album__text-date">
+                <a class="album__text-date-link" href="#{{ file.fileID }}"><span>↝</span> {{ file.fileDateString }}</a> 
+            </p>
         </div>
         {% endif %}
 
         {# Image #}
         {% if file.fileType == 'image' %}
             {% set src = ["src/album-assets/", album.slug, '/', file.fileName] | join %}
-            {% image src, "" %}
+            {% image src, "", file.fileID %}
         {% endif %}
 
         {# Video #}
         {% if file.fileType == 'video' and file.fileBase %}
-        <div class="album__block album__block--video js-video-block">
+        <div class="album__block album__block--video js-video-block" id="{{ file.fileID }}">
             {% set videoOutputUrl = ["/video/", file.fileBase, ".mp4"] | join %}
             <video autoplay loop muted playsinline>
                 <source src="{{ videoOutputUrl }}" />
