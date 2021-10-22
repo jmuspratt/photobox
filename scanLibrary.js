@@ -1,6 +1,18 @@
 const path = require('path')
 const fs = require('fs');
 
+const fileNameToDate = (string) => {
+    // get YYYY-MM-DD
+    const part1 = string.substring(0, 10);
+    // get HH-MM-SS, convert to HH:MM:SS
+    const part2 = string.substring(11, 19).replace(/-/g, ':');
+    const fullDateString  = `${part1}T${part2}.000-04:00`; // Shift Eastern timestamp to GMT
+    const dateObj = new Date(fullDateString); 
+    console.log('full date string', fullDateString);
+    console.log('date', dateObj);
+    return dateObj;
+}
+
 const scanLibrary = (pathString) => {
     const exclusions = ['.DS_Store', '.gitkeep'];
     const assetPath = path.resolve(process.cwd(), pathString);
@@ -19,7 +31,7 @@ const scanLibrary = (pathString) => {
             const extension = extRaw.toLowerCase().replace('.', '');
             const fileBase = path.basename(fileName, extRaw); 
             const fileID = fileName.replace(/\./g, '-');
-            const fileDate = new Date(fileBase.substring(0, 10));
+            const fileDate = fileNameToDate(fileBase); 
             const fileDateString = fileDate.toLocaleDateString('en-US', { 
                 month: 'long',
                 day: 'numeric', 
