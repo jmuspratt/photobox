@@ -7,7 +7,7 @@ const path = require('path');
   // https://www.11ty.dev/docs/plugins/image/#installation
 
   const Image = require("@11ty/eleventy-img");
-  async function imageShortcode(src, alt) {
+  async function imageShortcode(src, alt, htmlID) {
     if(alt === undefined) {
       // Throw error on missing alt attribute (alt="" works okay)
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
@@ -41,7 +41,7 @@ const path = require('path');
     }
 
     return `
-    <div class="album__block album__block--image album__block--image-${isPortrait ? 'portrait': 'landscape'}">
+    <div class="album__block album__block--image album__block--image-${isPortrait ? 'portrait': 'landscape'}" id="${htmlID}">
       <img 
         alt="${alt}"
         decoding="async"

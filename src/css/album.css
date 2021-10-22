@@ -21,15 +21,18 @@
   margin-top: 96px;
 }
 
+
 .album__head {
   color: var(--c-text-color);
   line-height: 1.2;
 }
 
-.album__subhead {
+.album__subhead,
+.album__text-date {
   color: var(--c-gray);
   margin: 2px 0 0;
 }
+
 
 .album__block {
   display: block;
@@ -39,6 +42,39 @@
 .album__block--image {
   background-color: var(--c-asset-bg);
 }
+
+
+@media (min-width: 800px) {
+  .album__block--text {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 800px) {
+  .album__text-date {
+    text-align: right;
+  }
+}
+
+a.album__text-date-link {
+  color: var(--c-gray);
+}
+
+a.album__text-date-link:hover {
+  color: var(--c-link);
+}
+
+a.album__text-date-link span {
+  opacity: 0;
+  transition: opacity 0.6s linear;
+}
+
+a.album__text-date-link:hover span {
+  opacity: 1;
+}
+
+
 
 .album__video-toggle {
   appearance: none;
