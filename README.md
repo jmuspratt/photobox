@@ -33,8 +33,7 @@ A static site script that generates web albums from directories of images and vi
 
 ### Priority
 
-- [ ] Display start date for each album using its directory prefix
-- [ ] Optionally show date for images/video (on hover?)
+- [x] Display dates to right of text blocks
 - [ ] Light/Dark themes
 - [ ] Add OG image for album pages
 
