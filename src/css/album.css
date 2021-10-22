@@ -27,12 +27,15 @@
   line-height: 1.2;
 }
 
+
 .album__subhead,
 .album__text-date {
   color: var(--c-gray);
-  margin: 2px 0 0;
 }
 
+.album__subhead {
+  margin: 2px 0 0;
+}
 
 .album__block {
   display: block;
@@ -46,6 +49,7 @@
 
 @media (min-width: 800px) {
   .album__block--text {
+    align-items: baseline;
     display: flex;
     justify-content: space-between;
   }
@@ -65,13 +69,16 @@ a.album__text-date-link:hover {
   color: var(--c-link);
 }
 
-a.album__text-date-link span {
-  opacity: 0;
-  transition: opacity 0.6s linear;
-}
+@media (min-width: 800px) {
+  a.album__text-date-link::before {
+    display: inline;
+    content: '⊙ ';
+    opacity: 0;
+  }
 
-a.album__text-date-link:hover span {
-  opacity: 1;
+  a.album__text-date-link:hover::before {
+    opacity: 1;
+  }
 }
 
 
