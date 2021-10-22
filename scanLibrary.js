@@ -8,8 +8,6 @@ const fileNameToDate = (string) => {
     const part2 = string.substring(11, 19).replace(/-/g, ':');
     const fullDateString  = `${part1}T${part2}.000-04:00`; // Shift Eastern timestamp to GMT
     const dateObj = new Date(fullDateString); 
-    console.log('full date string', fullDateString);
-    console.log('date', dateObj);
     return dateObj;
 }
 
