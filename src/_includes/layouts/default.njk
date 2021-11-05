@@ -4,38 +4,39 @@
 
     {% set pageTitle = siteData.name %}
     {% set pageUrl = siteData.publicUrl ~ page.url %}
-
     {% if album %}
       {% set pageTitle = album.albumName ~ ' – ' ~ siteData.name %}
     {% endif %}
 
     <title>{{ pageTitle }}</title>
-    <meta charset="utf-8">
-    <meta name="robots" content="noindex" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <link rel="stylesheet" href="/css/site.css" />
-    <link rel="canonical" href="{{ pageUrl }}"/>
-
 
     {# Standard meta tags #}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex" />
     <meta name="theme-color" content="#000000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ siteData.description }}">
-    <meta property="date_published" content="{{ page.date.toISOString() }}" />
+    <meta property="date_published" content="{% getBuildDate %}" />
+
 
     {# OG #}
     <meta property="og:description" content="{{ siteData.description }}" />
-    <meta property="og:title" content="{{ pageTitle }}" />
     <meta property="og:site_name" content="{{ siteData.name }}" />
-
+    <meta property="og:title" content="{{ pageTitle }}" />
+    <meta property="og:updated_time" content="{% getBuildDate %}" />
     <meta property="og:url" content="{{ pageUrl }}" />
-    <meta property="og:updated_time" content="{{ page.date.toISOString() }}" />
 
+    {# Og image tag #}
     {% if album and album.firstImage %}
       {% set src = ["src/album-assets/", album.slug, '/', album.firstImage.fileName] | join %}
       {% ogImage src, siteData.publicUrl %}
     {% endif %}
+
+    {# Link tags #}
+    <link rel="canonical" href="{{ pageUrl }}"/>
+    <link rel="stylesheet" href="/css/site.css" />
+
 
   </head>
   <body>

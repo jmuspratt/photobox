@@ -22,7 +22,7 @@ const scanLibrary = (pathString) => {
         const albumContentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
         const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
         const albumName = slug.substring(11).replace(/-/g, ' ');
-        
+
         const files = 
         albumContents
         .filter(fileName => !exclusions.some(term=> fileName.includes(term)))
