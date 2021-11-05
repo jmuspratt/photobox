@@ -54,25 +54,50 @@ const path = require('path');
     </div>`;
   }
 
+  // Og image shortcode returns og:image markup
+ async function ogImageShortcode (src, urlBase)  {
+  let metadata = await Image(src, {
+    widths: [800],
+    formats: ["jpeg"],
+    outputDir: "./dist/img/",
+    filenameFormat:  (id, src, width, format, options) => {
+      const extension = path.extname(src);
+      const name = path.basename(src, extension);
+      return `${name}__${width}.${format}`;
+    }
+  });
+  const lowResImg = metadata.jpeg[0];
+  return `
+    <meta property="og:image" content="${urlBase}${lowResImg.url}" />
+    <meta property="og:image:width" content="${lowResImg.width }" /> 
+    <meta property="og:image:height" content="${lowResImg.height}" /> 
+  `
+  ;
+
+}
+
+
+function getBuildDateShortcode() {
+  return new Date().toISOString();
+}
+
 module.exports = function(eleventyConfig) {
-   
   eleventyConfig.setBrowserSyncConfig({
-    
-   callbacks: {
-     // add a 404 page
-    /*   ready: function(err, bs) {
-         const content_404 = fs.readFileSync('_site/404.html');
-         bs.addMiddleware("*", (req, res) => {
-          // Provides the 404 content without redirect.
-          res.write(content_404);
-          res.end();
-        });
-       }, */
-    ghostMode: {
-      clicks: false,
-      forms: false,
-      scroll: false,
-    },
+    callbacks: {
+      // add a 404 page
+      /*   ready: function(err, bs) {
+          const content_404 = fs.readFileSync('_site/404.html');
+          bs.addMiddleware("*", (req, res) => {
+            // Provides the 404 content without redirect.
+            res.write(content_404);
+            res.end();
+          });
+        }, */
+      ghostMode: {
+        clicks: false,
+        forms: false,
+        scroll: false,
+      },
     }
   });
 
@@ -83,7 +108,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/robots.txt");
 
   // Add shortcodes
+  eleventyConfig.addNunjucksShortcode("getBuildDate", getBuildDateShortcode);
+
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+  eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
 
 
   return {

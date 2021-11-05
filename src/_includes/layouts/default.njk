@@ -2,26 +2,49 @@
 <html lang="en">
   <head>
 
-  {% set pageTitle = siteData.name %}
-  {% set pageUrl = siteData.publicUrl ~ page.url %}
+    {% set pageTitle = siteData.name %}
+    {% set pageUrl = siteData.publicUrl ~ page.url %}
 
-  {% if album %}
-    {% set pageTitle = album.albumName ~ ' – ' ~ siteData.name %}
-  {% endif %}
+
+    {% if album %}
+      {% set pageTitle = album.albumName ~ ' – ' ~ siteData.name %}
+    {% set publishedDate = album.albumDate %}
+
+    {% endif %}
 
     <title>{{ pageTitle }}</title>
-    <meta charset="utf-8">
-    <meta name="robots" content="noindex" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="stylesheet" href="/css/site.css" />
+    {# Standard meta tags #}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#000000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ siteData.description }}">
 
-    <!-- OG -->
-    <meta property="og:title" content="{{ pageTitle }}" />
+    {# OG #}
+    <meta property="og:description" content="{{ siteData.description }}" />
     <meta property="og:site_name" content="{{ siteData.name }}" />
+    <meta property="og:title" content="{{ pageTitle }}" />
     <meta property="og:url" content="{{ pageUrl }}" />
+
+    {# Og image tag #}
+    {% if album and album.firstImage %}
+      {% set src = ["src/album-assets/", album.slug, '/', album.firstImage.fileName] | join %}
+      {% ogImage src, siteData.publicUrl %}
+
+      <meta property="date_published" content="{{ album.albumDate }}" />
+      <meta property="og:updated_time" content="{{ album.albumDate }}" />
+
+    {% else %}
+      <meta property="date_published" content="{% getBuildDate %}" />
+      <meta property="og:updated_time" content="{% getBuildDate %}" />
+    {% endif %}
+
+    {# Link tags #}
+    <link rel="canonical" href="{{ pageUrl }}"/>
+    <link rel="stylesheet" href="/css/site.css" />
+
 
   </head>
   <body>

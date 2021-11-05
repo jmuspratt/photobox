@@ -72,7 +72,7 @@ a.album__text-date-link:hover {
 @media (min-width: 800px) {
   a.album__text-date-link::before {
     display: inline;
-    content: '⊙ ';
+    content: '→ ';
     opacity: 0;
   }
 
@@ -80,7 +80,6 @@ a.album__text-date-link:hover {
     opacity: 1;
   }
 }
-
 
 
 .album__video-toggle {
