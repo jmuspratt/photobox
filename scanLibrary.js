@@ -1,11 +1,11 @@
 const path = require('path')
 const fs = require('fs');
 
-const fileNameToDate = (string) => {
+const fileNameToDate = (string, includesTime) => {
     // get YYYY-MM-DD
     const part1 = string.substring(0, 10);
-    // get HH-MM-SS, convert to HH:MM:SS
-    const part2 = string.substring(11, 19).replace(/-/g, ':');
+    // get HH-MM-SS, convert to HH:MM:SS (fall back to 12 pm if includesTime is false)
+    const part2 = includesTime ? string.substring(11, 19).replace(/-/g, ':') : '12:00:00';
     const fullDateString  = `${part1}T${part2}.000-04:00`; // Shift Eastern timestamp to GMT
     const dateObj = new Date(fullDateString); 
     return dateObj;
@@ -22,6 +22,7 @@ const scanLibrary = (pathString) => {
         const albumContentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
         const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
         const albumName = slug.substring(11).replace(/-/g, ' ');
+        const albumDate = fileNameToDate(slug, false).toISOString(); 
 
         const files = 
         albumContents
@@ -32,7 +33,7 @@ const scanLibrary = (pathString) => {
             const extension = extRaw.toLowerCase().replace('.', '');
             const fileBase = path.basename(fileName, extRaw); 
             const fileID = fileName.replace(/\./g, '-');
-            const fileDate = fileNameToDate(fileBase); 
+            const fileDate = fileNameToDate(fileBase, true); 
             const fileDateString = fileDate.toLocaleDateString('en-US', { 
                 month: 'long',
                 day: 'numeric', 
@@ -91,6 +92,7 @@ const scanLibrary = (pathString) => {
 
         return {
             albumName,
+            albumDate,
             slug,
             files,
             firstImage
