@@ -8,9 +8,12 @@ permalink: "albums/{{ album.slug }}/"
 ---
 
 
+
+
 <div class="album">
 
     <main class="album__main">
+
 
     {% for file in album.files %}
 
@@ -42,7 +45,7 @@ permalink: "albums/{{ album.slug }}/"
             <video autoplay loop muted playsinline>
                 <source src="{{ videoOutputUrl }}" />
             </video>
-            <button class="album__video-toggle js-video-toggle" data-message-a="Play with sound" data-message-b="Mute">Play with sound</button>
+            <button class="album__video-toggle js-video-toggle" data-message-a="Controls + Sound On" data-message-b="Controls + Sound Off">Controls + Sound On</button>
         </div>
         {% endif %}
 

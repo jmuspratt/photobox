@@ -54,7 +54,31 @@ const path = require('path');
     </div>`;
   }
 
+  // Og image shortcode returns og:image markup
+ async function ogImageShortcode (src, urlBase)  {
+  let metadata = await Image(src, {
+    widths: [800],
+    formats: ["jpeg"],
+    outputDir: "./dist/img/",
+    filenameFormat:  (id, src, width, format, options) => {
+      const extension = path.extname(src);
+      const name = path.basename(src, extension);
+      return `${name}__${width}.${format}`;
+    }
+  });
+  const lowResImg = metadata.jpeg[0];
+  return `
+    <meta property="og:image" content="${urlBase}${lowResImg.url}" />
+    <meta property="og:image:width" content="${lowResImg.width }" /> 
+    <meta property="og:image:height" content="${lowResImg.height}" /> 
+  `
+  ;
+
+}
+
+
 module.exports = function(eleventyConfig) {
+
    
   eleventyConfig.setBrowserSyncConfig({
     
@@ -84,6 +108,7 @@ module.exports = function(eleventyConfig) {
 
   // Add shortcodes
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+  eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
 
 
   return {

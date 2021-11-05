@@ -23,7 +23,10 @@ const scanLibrary = (pathString) => {
         const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
         const albumName = slug.substring(11).replace(/-/g, ' ');
         
-        const files = albumContents.map(fileName=>{
+        const files = 
+        albumContents
+        .filter(fileName => !exclusions.some(term=> fileName.includes(term)))
+        .map(fileName=>{
             const filePath = `${albumContentsPath}/${fileName}`;
             const extRaw = path.extname(fileName);
             const extension = extRaw.toLowerCase().replace('.', '');
@@ -69,6 +72,7 @@ const scanLibrary = (pathString) => {
                 textContents = fs.readFileSync(filePath).toString();
             }
 
+
             return {
                 fileBase,
                 fileName,
@@ -80,12 +84,16 @@ const scanLibrary = (pathString) => {
                 textHeading,
                 textContents
             };
-        })
+        });
+        
+        //Extract first image for ogImage tag
+        const firstImage = files.find(file=>file.fileType == 'image');
 
         return {
             albumName,
             slug,
             files,
+            firstImage
         };
 
     });
