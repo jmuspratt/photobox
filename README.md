@@ -29,6 +29,17 @@ A static site script that generates web albums from directories of images and vi
 2. To build the site files _and_ process videos, run `npm run build-all`.
 3. Upload the contents of `dist` to your site.
 
+## Deploying
+
+Your site builds to the `/dist` directory. You can then sFTP the contents to your web server, or use rsync. If the latter, you can store the command as a function in your `.zshrc` file. It might look like this:
+
+```
+#--------  rsync local photos to server, deleting anything not in the source
+deployphotos() {
+  rsync -apzPog --delete --filter=":- .gitignore" ~/Sites/photobox/dist/ username@123.456.78.90:/var/www/photos.example.com/html/
+}
+```
+
 ## Development roadmap
 
 ### Priority
