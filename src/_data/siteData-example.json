@@ -1,8 +1,8 @@
 {
-  "name": "My Photos",
+  "author": "My name",
   "description": "Photos from my travels",
-  "publicUrl": "https://photos.example.com",
-  "createdBy": {
-    "name": "My name"
-  }
+  "robots": "none",
+  "theme": "system",
+  "title": "My Photos",
+  "url": "https://photos.example.com"
 }
