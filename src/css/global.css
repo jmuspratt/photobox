@@ -2,12 +2,34 @@
   --c-bg: #000000;
   --c-text: #ffffff;
   --c-link: #ffffff;
-  --c-gray: rgba(255, 255, 255, 0.375);
   --c-asset-bg: rgba(255, 255, 255, 0.08);
+  --c-gray: rgba(255, 255, 255, 0.375);
   --f-base: 16px / 1.5 Arial, sans-serif;
   --f-size: clamp(1rem, 2vw, 1.375rem);
   --site-padding: 8px;
 }
+
+/* Theming */
+[data-theme="light"] {
+  --c-bg: #fff;
+  --c-gray: rgba(0, 0, 0, 0.375);
+  --c-text: #000;
+  --c-link: #000;
+  --c-asset-bg: rgba(0, 0, 0, 0.08);
+}
+@media (prefers-color-scheme: light) {
+  [data-theme="system"] {
+  --c-bg: #fff;
+  --c-gray: rgba(0, 0, 0, 0.375);
+  --c-text: #000;
+  --c-link: #000;
+  --c-asset-bg: rgba(0, 0, 0, 0.08);
+  }
+}
+
+
+
+
 
 /* https://developer.mozilla.org/en-US/docs/Web/Media/images/aspect_ratio_mapping */
 img,

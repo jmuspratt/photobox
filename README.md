@@ -8,7 +8,7 @@ A static site script that generates web albums from directories of images and vi
 
 ## Local setup
 
-1. Open `siteData-example.json`, save as `siteData.json`. Edit the text values.
+1. Open `siteData-example.json`, save as `siteData.json`. Edit the properties with your information. `theme` can be set to `light`, `dark`, or `system`. `robots` is usally set to `all` or `none` ([more options here](https://yoast.com/robots-meta-tags/)).
 2. Run `npm install`
 3. For video processing, confirm you have [homebrew](https://brew.sh) installed, and use it to install ffmpeg via `brew install ffmpeg`.
 
@@ -34,10 +34,10 @@ A static site script that generates web albums from directories of images and vi
 ### Priority
 
 - [x] Display dates to right of text blocks
-- [ ] Light/Dark themes
-- [ ] Add OG image for album pages
+- [x] Add OG image for album pages
+- [x] Light/Dark themes
 
-### Maybe
+### Up Next?
 
 - [ ] RSS / Atom / JSON feeds
 - [ ] Remove orphaned optimized videos on build
