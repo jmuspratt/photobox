@@ -5,11 +5,9 @@
     {% set pageTitle = siteData.title %}
     {% set pageUrl = siteData.url ~ page.url %}
 
-
     {% if album %}
       {% set pageTitle = album.albumName ~ ' – ' ~ siteData.title %}
-    {% set publishedDate = album.albumDate %}
-
+      {% set publishedDate = album.albumDate %}
     {% endif %}
 
     <title>{{ pageTitle }}</title>
@@ -28,17 +26,20 @@
     <meta property="og:title" content="{{ pageTitle }}" />
     <meta property="og:url" content="{{ pageUrl }}" />
 
-    {# Og image tag #}
     {% if album and album.firstImage %}
       {% set src = ["src/album-assets/", album.slug, '/', album.firstImage.fileName] | join %}
+      
+      {# Og image tag #}
       {% ogImage src, siteData.url %}
 
       <meta property="date_published" content="{{ album.albumDate }}" />
       <meta property="og:updated_time" content="{{ album.albumDate }}" />
 
     {% else %}
+
       <meta property="date_published" content="{% getBuildDate %}" />
       <meta property="og:updated_time" content="{% getBuildDate %}" />
+    
     {% endif %}
 
     {# Link tags #}
@@ -48,7 +49,6 @@
 
   </head>
   <body data-theme="{{ siteData.theme }}">
-    
     {{ content | safe }}
     <script src="/js/scripts.js"></script>
   </body>
