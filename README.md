@@ -40,6 +40,7 @@ deployphotos() {
 - [x] Display dates to right of text blocks
 - [x] Add OG image for album pages
 - [x] Light/Dark themes
+- [ ] Break up album list by year
 
 ### Up Next?
 
