@@ -1,7 +1,7 @@
 :root {
-  --c-bg: #000000;
-  --c-text: #ffffff;
-  --c-link: #ffffff;
+  --c-bg: #222233;
+  --c-text: #fff;
+  --c-link: #fff;
   --c-asset-bg: rgba(255, 255, 255, 0.08);
   --c-gray: rgba(255, 255, 255, 0.375);
   --f-base: 16px / 1.5 Arial, sans-serif;
@@ -11,24 +11,21 @@
 
 /* Theming */
 [data-theme="light"] {
-  --c-bg: #fff;
-  --c-gray: rgba(0, 0, 0, 0.375);
+  --c-bg: #eeeeeb;
+  --c-gray: rgba(0, 0, 0, 0.3);
   --c-text: #000;
   --c-link: #000;
   --c-asset-bg: rgba(0, 0, 0, 0.08);
 }
 @media (prefers-color-scheme: light) {
   [data-theme="system"] {
-  --c-bg: #fff;
-  --c-gray: rgba(0, 0, 0, 0.375);
+  --c-bg: #eeeeeb;
+  --c-gray: rgba(0, 0, 0, 0.3);
   --c-text: #000;
   --c-link: #000;
   --c-asset-bg: rgba(0, 0, 0, 0.08);
   }
 }
-
-
-
 
 
 /* https://developer.mozilla.org/en-US/docs/Web/Media/images/aspect_ratio_mapping */
@@ -40,7 +37,7 @@ iframe,
 marquee,
 object,
 table {
-  /* We'll images' override aspec-ratio with an inline style */
+  /* We'll override images' aspect-ratio with an inline style */
   aspect-ratio: attr(width) / attr(height); 
   display: block;
   max-width: 100%;
