@@ -17,8 +17,8 @@
   grid-column: 1 / 3;
 }
 
-.album__block--text:not(:first-child) {
-  margin-top: 96px;
+.album__block--text {
+  margin-top: 3em;
 }
 
 
