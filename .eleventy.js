@@ -67,9 +67,7 @@ const path = require('path');
     }
   });
   const medResImg = metadata.jpeg[0];
-  return `
-    <img src=\"${urlBase}${medResImg.url}\" />
-  `
+  return `${urlBase}${medResImg.url}`
   ;
 
 }
@@ -132,7 +130,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
-  eleventyConfig.addNunjucksAsyncShortcode("feedImage", feedImageShortcode);
+  eleventyConfig.addNunjucksAsyncShortcode("feedImageSrc", feedImageShortcode);
 
 
   return {
