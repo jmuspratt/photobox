@@ -7,7 +7,7 @@ const fileNameToDate = (string, includesTime) => {
     // get HH-MM-SS, convert to HH:MM:SS (fall back to 12 pm if includesTime is false)
     const part2 = includesTime ? string.substring(11, 19).replace(/-/g, ':') : '12:00:00';
     const fullDateString  = `${part1}T${part2}.000-04:00`; // Shift Eastern timestamp to GMT
-    const dateObj = new Date(fullDateString); 
+    const dateObj = new Date(fullDateString);
     return dateObj;
 }
 
@@ -22,21 +22,21 @@ const scanLibrary = (pathString) => {
         const albumContentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
         const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
         const albumName = slug.substring(11).replace(/-/g, ' ');
-        const albumDate = fileNameToDate(slug, false).toISOString(); 
+        const albumDate = fileNameToDate(slug, false).toISOString();
 
-        const files = 
+        const files =
         albumContents
         .filter(fileName => !exclusions.some(term=> fileName.includes(term)))
         .map(fileName=>{
             const filePath = `${albumContentsPath}/${fileName}`;
             const extRaw = path.extname(fileName);
             const extension = extRaw.toLowerCase().replace('.', '');
-            const fileBase = path.basename(fileName, extRaw); 
+            const fileBase = path.basename(fileName, extRaw);
             const fileID = fileName.replace(/\./g, '-');
-            const fileDate = fileNameToDate(fileBase, true); 
-            const fileDateString = fileDate.toLocaleDateString('en-US', { 
+            const fileDate = fileNameToDate(fileBase, true);
+            const fileDateString = fileDate.toLocaleDateString('en-US', {
                 month: 'long',
-                day: 'numeric', 
+                day: 'numeric',
                 year: 'numeric',
             });
 
@@ -61,7 +61,7 @@ const scanLibrary = (pathString) => {
                 case 'jpg' :
                     fileType = 'image';
                     break;
-                default: 
+                default:
                     fileType = null;
             }
             let textHeading = null;
@@ -86,7 +86,7 @@ const scanLibrary = (pathString) => {
                 textContents
             };
         });
-        
+
         //Extract first image for ogImage tag
         const firstImage = files.find(file=>file.fileType == 'image');
 

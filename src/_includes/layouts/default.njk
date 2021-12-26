@@ -12,6 +12,10 @@
 
     <title>{{ pageTitle }}</title>
 
+
+    {# JSON Feed #}
+    <link rel="alternate" type="application/json" href="{{ siteData.url}}/feed.json"/>
+
     {# Standard meta tags #}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,7 +32,7 @@
 
     {% if album and album.firstImage %}
       {% set src = ["src/album-assets/", album.slug, '/', album.firstImage.fileName] | join %}
-      
+
       {# Og image tag #}
       {% ogImage src, siteData.url %}
 
@@ -39,7 +43,7 @@
 
       <meta property="date_published" content="{% getBuildDate %}" />
       <meta property="og:updated_time" content="{% getBuildDate %}" />
-    
+
     {% endif %}
 
     {# Link tags #}
