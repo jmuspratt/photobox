@@ -12,7 +12,7 @@ const path = require('path');
       // Throw error on missing alt attribute (alt="" works okay)
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
     }
-  
+
     let metadata = await Image(src, {
       widths: [800, 1600, 2400],
       formats: ["jpeg"],
@@ -42,11 +42,11 @@ const path = require('path');
 
     return `
     <div class="album__block album__block--image album__block--image-${isPortrait ? 'portrait': 'landscape'}" id="${htmlID}">
-      <img 
+      <img
         alt="${alt}"
         decoding="async"
         loading="lazy"
-        sizes="${sizes}" 
+        sizes="${sizes}"
         src="${lowResImg.url}"
         srcset="${srcSet}"
         style="aspect-ratio: ${aspectRatio};"
@@ -54,10 +54,10 @@ const path = require('path');
     </div>`;
   }
 
-  // Og image shortcode returns og:image markup
- async function ogImageShortcode (src, urlBase)  {
+  // Feed shortcode (see feed.njk)
+ async function feedImageShortcode (src, urlBase)  {
   let metadata = await Image(src, {
-    widths: [800],
+    widths: [1600],
     formats: ["jpeg"],
     outputDir: "./dist/img/",
     filenameFormat:  (id, src, width, format, options) => {
@@ -66,15 +66,33 @@ const path = require('path');
       return `${name}__${width}.${format}`;
     }
   });
-  const lowResImg = metadata.jpeg[0];
-  return `
-    <meta property="og:image" content="${urlBase}${lowResImg.url}" />
-    <meta property="og:image:width" content="${lowResImg.width }" /> 
-    <meta property="og:image:height" content="${lowResImg.height}" /> 
-  `
+  const medResImg = metadata.jpeg[0];
+  return `${urlBase}${medResImg.url}`
   ;
 
 }
+
+  // Og image shortcode returns og:image markup
+  async function ogImageShortcode (src, urlBase)  {
+    let metadata = await Image(src, {
+      widths: [800],
+      formats: ["jpeg"],
+      outputDir: "./dist/img/",
+      filenameFormat:  (id, src, width, format, options) => {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}__${width}.${format}`;
+      }
+    });
+    const lowResImg = metadata.jpeg[0];
+    return `
+      <meta property="og:image" content="${urlBase}${lowResImg.url}" />
+      <meta property="og:image:width" content="${lowResImg.width }" />
+      <meta property="og:image:height" content="${lowResImg.height}" />
+    `
+    ;
+
+  }
 
 
 function getBuildDateShortcode() {
@@ -112,6 +130,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
+  eleventyConfig.addNunjucksAsyncShortcode("feedImageSrc", feedImageShortcode);
 
 
   return {
