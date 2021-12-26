@@ -70,7 +70,8 @@ const scanLibrary = (pathString) => {
             // text files
             if (['txt', 'md'].includes(extension)) {
                 textHeading = fileName.substring(20).replace(/-/g, ' ').replace(`.${extension}`, '');
-                textContents = fs.readFileSync(filePath).toString();
+                // Get text content and replace line breaks with <br /> tags
+                textContents = fs.readFileSync(filePath).toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
             }
 
 
