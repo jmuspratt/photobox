@@ -18,7 +18,7 @@ permalink: "feed.json"
             "title": "{{ album.albumName }}",
             "date_published" : "{{ album.albumDate }}",
             "url": "{{ siteData.url }}/albums/{{album.slug}}",
-            "content_html": "{% for file in album.files %}{% if file.fileType == 'text' %}<h3>{{ file.textHeading | e }}</h3>{% if file.textContents %}<h4>{{ file.textContents | e }}</h4>{% endif %}{% endif %}{% if file.fileType == 'image' %}<p><img src=\"{% feedImageSrc ["src/album-assets/", album.slug, '/', file.fileName] | join, siteData.url %}\" /></p>{% endif %}{% if file.fileType == 'video' and file.fileBase %}<p><video autoplay loop muted playsinline><source src=\"{{ ["/video/", file.fileBase, ".mp4"] | join  }}\" /></video></p>{% endif %}{% endfor %}"
+            "content_html": "{% for file in album.files %}{% if file.fileType == 'text' %}<h3>{{ file.textHeading | safe }}</h3>{% if file.textContents %}<h4>{{ file.textContents | safe }}</h4>{% endif %}{% endif %}{% if file.fileType == 'image' %}<p><img src=\"{% feedImageSrc ["src/album-assets/", album.slug, '/', file.fileName] | join, siteData.url %}\" /></p>{% endif %}{% if file.fileType == 'video' and file.fileBase %}<p><video autoplay loop muted playsinline><source src=\"{{ ["/video/", file.fileBase, ".mp4"] | join  }}\" /></video></p>{% endif %}{% endfor %}"
         }{% if not loop.last %},{% endif %}
     {% endfor %}
     ]
