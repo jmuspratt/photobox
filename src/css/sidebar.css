@@ -1,8 +1,8 @@
 .sidebar {
   align-items: flex-start;
+  display: flex;
   flex-direction: column;
   height: 100%;
-  display: flex;
   justify-content: flex-start;
   overflow: auto;
 }
@@ -10,6 +10,13 @@
 .sidebar__title {
   margin: 2em 0 1em;
   font-weight: normal;
+}
+
+.sidebar__album-year {
+  color: var(--c-gray);
+  font-weight: bold;
+  margin-top: 2em;
+  padding-bottom: 0.05em;
 }
 
 .sidebar__album-list {
@@ -31,7 +38,7 @@
 
 @media (min-width: 800px) {
   .sidebar__title {
-    margin: 0 0 2em;
+    margin: 0 0 3em;
   }
 
   .sidebar__album-list {
