@@ -23,6 +23,7 @@ const scanLibrary = (pathString) => {
         const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
         const albumName = slug.substring(11).replace(/-/g, ' ');
         const albumDate = fileNameToDate(slug, false).toISOString();
+        const albumYear = albumDate.slice(0, 4);
 
         const files =
         albumContents
@@ -92,11 +93,12 @@ const scanLibrary = (pathString) => {
         const firstImage = files.find(file=>file.fileType == 'image');
 
         return {
-            albumName,
             albumDate,
-            slug,
+            albumName,
+            albumYear,
             files,
-            firstImage
+            firstImage,
+            slug
         };
 
     });

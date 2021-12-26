@@ -21,9 +21,9 @@ permalink: "albums/{{ album.slug }}/"
         {% if file.fileType == 'text' %}
         <div class="album__block album__block--text" id="{{ file.fileID }}">
             <hgroup class="album__hgroup">
-                <h3 class="album__head">{{ file.textHeading }}</h4>
+                <h3 class="album__head">{{ file.textHeading | safe }}</h4>
                 {% if file.textContents %}
-                    <p class="album__subhead">{{ file.textContents }} </p>
+                    <p class="album__subhead">{{ file.textContents | safe }} </p>
                 {% endif %}
             </hgroup>
             <p class="album__text-date">
