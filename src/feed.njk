@@ -14,10 +14,11 @@ permalink: "feed.json"
     "items": [
     {% for album in albums %}
         {
+            "id": "",
             "title": "{{ album.albumName }}",
             "date_published" : "{{ album.albumDate }}",
             "url": "{{ siteData.url }}/albums/{{album.slug}}",
-            "content_html": "{% for file in album.files %}<p><img src=\"{{ ["src/album-assets/", album.slug, '/', file.fileName] | join }}\" /></p>{% if file.fileType == 'video' and file.fileBase %}<video autoplay loop muted playsinline><source src=\"{{ ["/video/", file.fileBase, ".mp4"] | join  }}\" /></video>{% endif %}{% endfor %}"
+            "content_html": "{% for file in album.files %}{% if file.fileType == 'image' %}<p>{% feedImage ["src/album-assets/", album.slug, '/', file.fileName] | join, siteData.url %}</p>{% endif %}{% if file.fileType == 'video' and file.fileBase %}<p><video autoplay loop muted playsinline><source src=\"{{ ["/video/", file.fileBase, ".mp4"] | join  }}\" /></video></p>{% endif %}{% endfor %}"
         }{% if not loop.last %},{% endif %}
     {% endfor %}
     ]
