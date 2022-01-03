@@ -2,10 +2,6 @@
 
 A static site script that generates web albums from directories of images and videos. Built with [11ty](https://www.11ty.dev).
 
-![](screenshots/folder.png)
-![](screenshots/album1.png)
-![](screenshots/album2.png)
-
 ## Local setup
 
 1. Open `siteData-example.json`, save as `siteData.json`. Edit the properties with your information. `theme` can be set to `light`, `dark`, or `system`. `robots` is usally set to `all` or `none` ([more options here](https://yoast.com/robots-meta-tags/)).
@@ -40,9 +36,9 @@ deployphotos() {
 - [x] Display dates to right of text blocks
 - [x] Add OG image for album pages
 - [x] Light/Dark themes
+- [x] Break up album list by year
 - [x] JSON feed
 
 ### Up Next?
 
-- [ ] Break up album list by year
 - [ ] Remove orphaned optimized videos on build
