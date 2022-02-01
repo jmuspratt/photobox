@@ -4,7 +4,7 @@ pagination:
     data: albums
     size: 1
     alias: album
-permalink: "albums/{{ album.slug }}/"
+permalink: "albums/{{ album.urlSlug }}/"
 ---
 
 
@@ -26,9 +26,11 @@ permalink: "albums/{{ album.slug }}/"
                     <p class="album__subhead">{{ file.textContents | safe }} </p>
                 {% endif %}
             </hgroup>
+            {% if file.fileDateString %}
             <p class="album__text-date">
                 <a class="album__text-date-link" href="#{{ file.fileID }}">{{ file.fileDateString }}</a>
             </p>
+            {% endif %}
         </div>
         {% endif %}
 

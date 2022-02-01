@@ -8,8 +8,8 @@
 }
 
 .sidebar__title {
-  margin: 2em 0 1em;
   font-weight: normal;
+  margin: 2em 0 1em;
 }
 
 .sidebar__album-year {
@@ -34,6 +34,12 @@
 .sidebar__album-list a:hover,
 .sidebar__album-item--active a {
   color: var(--c-link);
+}
+
+.sidebar__hidden-note {
+  color: var(--c-gray);
+  font-size: 80%;
+  padding-right: 2em;
 }
 
 @media (min-width: 800px) {

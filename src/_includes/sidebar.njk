@@ -3,27 +3,37 @@
     <a href="/">{{ siteData.title }}</a>
   </h1>
 
+  {# Don't show albums if we're in a hidden album #}
+  {% if album.albumHidden %}
+    <p class="sidebar__hidden-note">This is a hidden album. See the <a href="{{ siteData.url }}">home page</a> for public albums.</p>
+  {% else  %}
 
-  {% for listAlbum in albums %}
-    {# Set classes #}
-    {% set newYear = lastAlbumYear != listAlbum.albumYear %}
-    {% set itemClass = 'sidebar__album-item' %}
-    {% if listAlbum.slug == album.slug  %}
-      {% set itemClass = 'sidebar__album-item sidebar__album-item--active' %}
-    {% endif %}
+    {% for listAlbum in albums %}
+      {# Don't list hidden albums #}
+      {% if not listAlbum.albumHidden %}
 
-    {% if newYear %}
-      {% if not loop.first %}
-        </ul>
+        {# Set classes #}
+        {% set newYear = lastAlbumYear != listAlbum.albumYear %}
+        {% set itemClass = 'sidebar__album-item' %}
+        {% if listAlbum.slug == album.slug  %}
+          {% set itemClass = 'sidebar__album-item sidebar__album-item--active' %}
+        {% endif %}
+
+        {% if newYear %}
+          {% if not loop.first %}
+            </ul>
+          {% endif %}
+          <h3 class="sidebar__album-year">{{ listAlbum.albumYear }}</h3>
+          <ul class="sidebar__album-list">
+        {% endif %}
+
+        <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.albumName }}</a></li>
+
+        {% set lastAlbumYear = listAlbum.albumYear %}
+
       {% endif %}
-      <h3 class="sidebar__album-year">{{ listAlbum.albumYear }}</h3>
-      <ul class="sidebar__album-list">
-    {% endif %}
+    {% endfor %}
+    </ul>
 
-    <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.albumName }}</a></li>
-
-    {% set lastAlbumYear = listAlbum.albumYear %}
-
-  {% endfor %}
-  </ul>
+  {% endif %}
 </div>

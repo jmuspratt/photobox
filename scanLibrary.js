@@ -19,9 +19,14 @@ const scanLibrary = (pathString) => {
 
     const assetLibrary = albumSlugs.map(slug=>{
 
+        const albumHidden = slug.includes('[hidden]');
         const albumContentsPath = path.resolve(process.cwd(), `${pathString}/${slug}` );
         const albumContents = fs.readdirSync(albumContentsPath, 'utf-8');
-        const albumName = slug.substring(11).replace(/-/g, ' ');
+        // Name is slug with date prefix and "[hidden]" removed and hyphens replaced with spaces
+        let albumName = slug.substring(11).replace(/\[hidden\]/g, '').replace(/-/g, ' ');
+
+        // Remove -[hidden] from output slug too
+        let urlSlug = albumHidden?  slug.replace('-[hidden]', '') : slug;
         const albumDate = fileNameToDate(slug, false).toISOString();
         const albumYear = albumDate.slice(0, 4);
 
@@ -34,12 +39,17 @@ const scanLibrary = (pathString) => {
             const extension = extRaw.toLowerCase().replace('.', '');
             const fileBase = path.basename(fileName, extRaw);
             const fileID = fileName.replace(/\./g, '-');
+
             const fileDate = fileNameToDate(fileBase, true);
-            const fileDateString = fileDate.toLocaleDateString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-            });
+            let fileDateString = null;
+
+            if (fileDate) {
+                fileDateString = fileDate.toLocaleDateString('en-US', {
+                   month: 'long',
+                   day: 'numeric',
+                   year: 'numeric',
+               });
+            }
 
 
             let fileType = null;
@@ -94,11 +104,13 @@ const scanLibrary = (pathString) => {
 
         return {
             albumDate,
+            albumHidden,
             albumName,
             albumYear,
             files,
             firstImage,
-            slug
+            slug,
+            urlSlug
         };
 
     });
