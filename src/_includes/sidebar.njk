@@ -5,7 +5,8 @@
 
   {# Don't show albums if we're in a hidden album #}
   {% if album.albumHidden %}
-    <p class="sidebar__hidden-note">This is a hidden album. See the <a href="{{ siteData.url }}">home page</a> for public albums.</p>
+    <p class="sidebar__hidden-note">This is a hidden album.</p>
+    <p class="sidebar__hidden-note">See the <a href="{{ siteData.url }}">home page</a> for public albums.</p>
   {% else  %}
 
     {% for listAlbum in albums %}
