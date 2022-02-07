@@ -43,11 +43,12 @@
 }
 
 @media (min-width: 800px) {
+  .sidebar {
+    margin-top: auto;
+  }
+
   .sidebar__title {
     margin: 0 0 3em;
   }
 
-  .sidebar__album-list {
-    margin-top: auto;
-  }
 }
