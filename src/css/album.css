@@ -21,6 +21,10 @@
   padding-top: 3em;
 }
 
+.album__block--text:first-child {
+  padding-top: 6.5em;
+}
+
 
 .album__head {
   color: var(--c-text-color);

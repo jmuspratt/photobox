@@ -4,5 +4,5 @@ node_modules
 src/_data/siteData.json
 src/album-assets/*
 !src/album-assets/.gitkeep
-!src/album-assets/2008-08-01-Alaska
-!src/album-assets/2010-09-18-Scotland
+!src/album-assets/2008-08-01-Trip-to-Alaska
+!src/album-assets/2010-09-18-Hiking-in-Scotland

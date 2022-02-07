@@ -2,6 +2,9 @@
 
 A static site script that generates web albums from directories of images and videos. Built with [11ty](https://www.11ty.dev).
 
+![Screenshot of album view](screenshots/album.png)
+
+
 ## Local setup
 
 1. Open `siteData-example.json`, save as `siteData.json`. Edit the properties with your information. `theme` can be set to `light`, `dark`, or `system`. `robots` is usally set to `all` or `none` ([more options here](https://yoast.com/robots-meta-tags/)).
