@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar sidebar--{{ albumView }}">
   <h1 class="sidebar__title">
     <a href="/">{{ siteData.title }}</a>
   </h1>
@@ -28,7 +28,16 @@
           <ul class="sidebar__album-list">
         {% endif %}
 
-        <li class="{{ itemClass }}"><a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.albumName }}</a></li>
+        <li class="{{ itemClass }}">
+          {% if listAlbum.firstImage and albumView == 'grid' %}
+          {% set src = ["src/album-assets/", listAlbum.slug, '/', listAlbum.firstImage.fileName] | join %}
+          <div class="sidebar__album-image">
+            {% image src, "", file.fileID %}
+          </div>
+          {% endif %}
+
+          <a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.albumName }}</a>
+        </li>
 
         {% set lastAlbumYear = listAlbum.albumYear %}
 

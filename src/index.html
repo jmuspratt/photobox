@@ -2,6 +2,7 @@
 layout: layouts/default.njk
 ---
 
-<div class="album">
-  <aside class="album__aside">{% include "sidebar.njk" %}</aside>
+<div class="home">
+  {% set albumView = 'grid' %}
+  {% include "album-list.njk" %}
 </div>
