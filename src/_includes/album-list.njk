@@ -31,12 +31,15 @@
         <li class="{{ itemClass }}">
           {% if listAlbum.firstImage and albumView == 'grid' %}
           {% set src = ["src/album-assets/", listAlbum.slug, '/', listAlbum.firstImage.fileName] | join %}
+          {% set url = ["/albums/", listAlbum.slug ] | join%}
           <div class="sidebar__album-image">
+            <a href="{{ url }}">
             {% image src, "", file.fileID %}
+            </a>
           </div>
           {% endif %}
 
-          <a href="/albums/{{ listAlbum.slug }}">{{ listAlbum.albumName }}</a>
+          <a class="sidebar__album-title" href="{{ url }}">{{ listAlbum.albumName }}</a>
         </li>
 
         {% set lastAlbumYear = listAlbum.albumYear %}

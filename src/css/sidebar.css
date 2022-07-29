@@ -53,7 +53,19 @@
 
 }
 
-.sidebar--grid .sidebar__album-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.sidebar--grid .sidebar__album-item {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.sidebar--grid  .sidebar__album-list {
+  width: 100%
+}
+.sidebar--grid .sidebar__album-image {
+  order: 2;
+  width: 30%;
+}
+.sidebar--grid .sidebar__album-title {
+  order: 1;
 }
