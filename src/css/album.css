@@ -18,13 +18,8 @@
 }
 
 .album__block--text {
-  padding-top: 3em;
+  padding-top: 3.5em;
 }
-
-.album__block--text:first-child {
-  padding-top: 3em;
-} 
-
 
 .album__head {
   color: var(--c-text-color);
