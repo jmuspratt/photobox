@@ -118,11 +118,11 @@ a.album__text-date-link:hover {
     top: 0;
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 20%;
   }
 
   .album__main {
-    margin-left: 15%;
+    margin-left: 20%;
     width: 85%;
   }
 }

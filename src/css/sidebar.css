@@ -20,7 +20,6 @@
   font-weight: bold;
   padding-top: 1.5em;
   padding-bottom: 0.05em;
-  width: calc(100% - (2 * var(--site-padding)));
 }
 
 .sidebar__album-list {
