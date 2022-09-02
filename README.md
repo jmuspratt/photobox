@@ -1,4 +1,4 @@
-kp# Photobox
+# Photobox
 
 A static site script that generates web albums from directories of images and videos. Built with [11ty](https://www.11ty.dev).
 
