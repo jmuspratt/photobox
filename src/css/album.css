@@ -17,13 +17,8 @@
 }
 
 .album__block--text {
-  padding-top: 3em;
+  padding-top: 3.375em;
 }
-
-.album__block--text:first-child {
-  padding-top: 6.5em;
-}
-
 
 .album__head {
   color: var(--c-text-color);
@@ -117,11 +112,19 @@ a.album__text-date-link:hover {
     top: 0;
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 20%;
   }
 
   .album__main {
-    margin-left: 25%;
-    width: 75%;
+    margin-left: 20%;
+    width: 85%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .album__main {
+    margin-left: 20%;
+    margin-right: 10%;
+    width: 70%;
   }
 }

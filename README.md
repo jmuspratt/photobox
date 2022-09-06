@@ -2,7 +2,7 @@
 
 A static site script that generates web albums from directories of images and videos. Built with [11ty](https://www.11ty.dev).
 
-![Screenshot of album view](screenshots/album.png)
+![Screenshot of album view](screenshots/album-screenshot.png)
 
 
 ## Local setup
