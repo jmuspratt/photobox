@@ -44,7 +44,6 @@ const path = require('path');
     <div class="album__block album__block--image album__block--image-${isPortrait ? 'portrait': 'landscape'}" id="${htmlID}">
       <img
         alt="${alt}"
-        decoding="async"
         loading="lazy"
         sizes="${sizes}"
         src="${lowResImg.url}"
