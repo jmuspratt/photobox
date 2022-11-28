@@ -26,7 +26,7 @@ function resizeVideo(video, quality) {
         const ffmpeg = spawn('ffmpeg', [
             '-i', video.filePath, 
             '-c:v', 'libx265', 
-            '-crf', '15',
+            '-crf', '24',
             '-vf', `scale=-2:${quality}`, 
             '-preset', 'veryslow', 
             '-tag:v', 'hvc1',
