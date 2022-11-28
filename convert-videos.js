@@ -25,16 +25,12 @@ function resizeVideo(video, quality) {
         console.log('Converting...', video.fileName);
         const ffmpeg = spawn('ffmpeg', [
             '-i', video.filePath, 
-            '-codec:v', 'libx264', 
-            '-profile:v', 'main', 
+            '-c:v', 'libx265', 
+            '-crf', '15',
+            '-vf', `scale=-2:${quality}`, 
             '-preset', 'veryslow', 
-            '-b:v', '5000k', 
-            '-maxrate', '5000k', 
-            '-bufsize', '800k', 
-            '-vf', 
-            `scale=-2:${quality}`, 
-            '-threads', '0', 
-            '-b:a', '128k', 
+            '-tag:v', 'hvc1',
+            '-movflags', 'faststart',
             outputPath
         ]);
         ffmpeg.stderr.on('data', (data) => {
