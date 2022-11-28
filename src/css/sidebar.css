@@ -36,7 +36,6 @@
 }
 
 .sidebar__album-list a:hover {
-  box-shadow: inset 0 -0.07em 0 var(--c-link); 
   color: var(--c-link);
 }
 
