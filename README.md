@@ -2,8 +2,7 @@
 
 A static site script that generates web albums from directories of images and videos. Built with [11ty](https://www.11ty.dev).
 
-![Screenshot of album view](screenshots/album-screenshot.png)
-
+![Screenshot of album view](screenshots/album.png)
 
 ## Local setup
 
@@ -43,7 +42,6 @@ deployphotos() {
 - [x] Break up album list by year
 - [x] JSON feed
 - [x] Hidden albums
-
 
 ### Up Next?
 
