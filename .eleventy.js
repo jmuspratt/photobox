@@ -1,7 +1,6 @@
 // docs: https://www.11ty.io/docs/config/
 const fs = require("fs");
 const path = require('path');
-const UpgradeHelper = require("@11ty/eleventy-upgrade-help");
 
 
   // Image processing
@@ -120,9 +119,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("feedImageSrc", feedImageShortcode);
   
-  // eleventyConfig.addPl/ugin(UpgradeHelper);
-
-
   return {
     htmlTemplateEngine: "njk",
     passthroughFileCopy: true,
