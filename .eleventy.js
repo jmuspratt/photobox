@@ -1,6 +1,7 @@
 // docs: https://www.11ty.io/docs/config/
 const fs = require("fs");
 const path = require('path');
+const UpgradeHelper = require("@11ty/eleventy-upgrade-help");
 
 
   // Image processing
@@ -99,25 +100,13 @@ function getBuildDateShortcode() {
 }
 
 module.exports = function(eleventyConfig) {
-  eleventyConfig.setBrowserSyncConfig({
-    callbacks: {
-      // add a 404 page
-      /*   ready: function(err, bs) {
-          const content_404 = fs.readFileSync('_site/404.html');
-          bs.addMiddleware("*", (req, res) => {
-            // Provides the 404 content without redirect.
-            res.write(content_404);
-            res.end();
-          });
-        }, */
-      ghostMode: {
-        clicks: false,
-        forms: false,
-        scroll: false,
-      },
-    }
+  eleventyConfig.setServerOptions({
+    liveReload: true,
+    domDiff: true,
+    port: 8080,
+    watch: [],
+    showAllHosts: false
   });
-
 
   // Pass through certain assets
   eleventyConfig.addPassthroughCopy("src/css");
@@ -130,6 +119,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("feedImageSrc", feedImageShortcode);
+  
+  // eleventyConfig.addPl/ugin(UpgradeHelper);
 
 
   return {
