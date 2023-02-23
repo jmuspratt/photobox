@@ -7,10 +7,10 @@
   "resolved" "https://registry.npmjs.org/@11ty/dependency-tree/-/dependency-tree-2.0.1.tgz"
   "version" "2.0.1"
 
-"@11ty/eleventy-dev-server@^1.0.1":
-  "integrity" "sha512-lTj9uAvXeArmdoEF1qpBbSq6h4ZgCe7DPhYrl1XcZxe10kpH/e9noajBT9EBzNOzKBcYvVAIin/IbhUMyyUy/g=="
-  "resolved" "https://registry.npmjs.org/@11ty/eleventy-dev-server/-/eleventy-dev-server-1.0.1.tgz"
-  "version" "1.0.1"
+"@11ty/eleventy-dev-server@^1.0.3":
+  "integrity" "sha512-SjYQewOO0Oo2jUI5h0Lk87pRJllDBzbdcHGZTYEf00gz966kidP1Hyd3ySaHqL4lFqW2I6jIxNVKPlhwYhp6yA=="
+  "resolved" "https://registry.npmjs.org/@11ty/eleventy-dev-server/-/eleventy-dev-server-1.0.3.tgz"
+  "version" "1.0.3"
   dependencies:
     "@11ty/eleventy-utils" "^1.0.1"
     "chokidar" "^3.5.3"
@@ -45,14 +45,6 @@
     "p-queue" "^6.6.2"
     "sharp" "^0.30.3"
 
-"@11ty/eleventy-upgrade-help@^2.0.5":
-  "integrity" "sha512-sIH/ObNN2QDyd9Tqzb4N5gKuhgmq7VDO5o/GNpD+jMwCmMFumUiCoNcpp1tlRonuNp7IAVrXIg6SYDp6aqvQUw=="
-  "resolved" "https://registry.npmjs.org/@11ty/eleventy-upgrade-help/-/eleventy-upgrade-help-2.0.5.tgz"
-  "version" "2.0.5"
-  dependencies:
-    "chalk" "^4.1.1"
-    "semver" "^7.3.5"
-
 "@11ty/eleventy-utils@^1.0.1":
   "integrity" "sha512-HPpCTz4PzudcQU+i+x6GSNHVqgnvRhnVYg5dLKaAoRWLN966odAGsBxKSyhF8i1MdlOPtsytYb2AGWP7jISC5w=="
   "resolved" "https://registry.npmjs.org/@11ty/eleventy-utils/-/eleventy-utils-1.0.1.tgz"
@@ -60,13 +52,13 @@
   dependencies:
     "normalize-path" "^3.0.0"
 
-"@11ty/eleventy@^2.0.0-beta.1":
-  "integrity" "sha512-j/V73NWO3i8VnVBWHytDbHxyexomKwrbHiDOLs3LyNaaB3MYZIvGYYf10NVLDO37Zq9CacIfP6a69Njjg9rJDg=="
-  "resolved" "https://registry.npmjs.org/@11ty/eleventy/-/eleventy-2.0.0-beta.1.tgz"
-  "version" "2.0.0-beta.1"
+"@11ty/eleventy@^2.0.0":
+  "integrity" "sha512-heNLjt1FD2nx7fvidIgA4zrIvxuslgBK0w5/Ckr5iape1CoLzmDx1uIxPa66Atr1M6YzwG9hcOxoZUYV7PfLXw=="
+  "resolved" "https://registry.npmjs.org/@11ty/eleventy/-/eleventy-2.0.0.tgz"
+  "version" "2.0.0"
   dependencies:
     "@11ty/dependency-tree" "^2.0.1"
-    "@11ty/eleventy-dev-server" "^1.0.1"
+    "@11ty/eleventy-dev-server" "^1.0.3"
     "@11ty/eleventy-utils" "^1.0.1"
     "@iarna/toml" "^2.2.5"
     "@sindresorhus/slugify" "^1.1.2"
@@ -356,7 +348,7 @@
     "function-bind" "^1.1.1"
     "get-intrinsic" "^1.0.2"
 
-"chalk@^4.0.2", "chalk@^4.1.1":
+"chalk@^4.0.2":
   "integrity" "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA=="
   "resolved" "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz"
   "version" "4.1.2"
@@ -1095,9 +1087,9 @@
   "version" "0.5.2"
 
 "morphdom@^2.6.1":
-  "integrity" "sha512-Y8YRbAEP3eKykroIBWrjcfMw7mmwJfjhqdpSvoqinu8Y702nAwikpXcNFDiIkyvfCLxLM9Wu95RZqo4a9jFBaA=="
-  "resolved" "https://registry.npmjs.org/morphdom/-/morphdom-2.6.1.tgz"
-  "version" "2.6.1"
+  "integrity" "sha512-8L8DwbdjjWwM/aNqj7BSoSn4G7SQLNiDcxCnMWbf506jojR6lNQ5YOmQqXEIE8u3C492UlkN4d0hQwz97+M1oQ=="
+  "resolved" "https://registry.npmjs.org/morphdom/-/morphdom-2.7.0.tgz"
+  "version" "2.7.0"
 
 "ms@2.0.0":
   "integrity" "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A=="
@@ -1535,7 +1527,7 @@
     "kind-of" "^6.0.0"
 
 "semver-compare@^1.0.0":
-  "integrity" "sha1-De4hahyUGrN+nvsXiPavxf9VN/w="
+  "integrity" "sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow=="
   "resolved" "https://registry.npmjs.org/semver-compare/-/semver-compare-1.0.0.tgz"
   "version" "1.0.0"
 
@@ -1765,9 +1757,9 @@
   "version" "1.0.2"
 
 "ws@^8.12.0":
-  "integrity" "sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig=="
-  "resolved" "https://registry.npmjs.org/ws/-/ws-8.12.0.tgz"
-  "version" "8.12.0"
+  "integrity" "sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew=="
+  "resolved" "https://registry.npmjs.org/ws/-/ws-8.12.1.tgz"
+  "version" "8.12.1"
 
 "yallist@^4.0.0":
   "integrity" "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A=="
