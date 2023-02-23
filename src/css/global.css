@@ -3,7 +3,9 @@
   --c-text: #fff;
   --c-link: #fff;
   --c-asset-bg: rgba(255, 255, 255, 0.08);
+  --c-border: rgba(255, 255, 255, 0.15);
   --c-gray: rgba(255, 255, 255, 0.375);
+
   --f-base: 16px / 1.5 Arial, sans-serif;
   --f-size: clamp(0.875rem, 2vw, 1rem);
   --site-padding: 8px;
