@@ -98,6 +98,7 @@ a.sidebar__album-title:hover {
   color: var(--c-text);
 }
 
+
 .sidebar--grid .sidebar__album-title {
   display: block;
 }
@@ -112,7 +113,6 @@ a.sidebar__album-title:hover {
 }
 
 .sidebar--grid .album__block--image {
-  aspect-ratio: 3 / 4;
   border-radius: 5px;
   margin-bottom: 0.5em;
   overflow: hidden;
@@ -125,14 +125,27 @@ a.sidebar__album-title:hover {
 }
 
  @media (min-width: 600px) {
+
+  .sidebar--grid .sidebar__album-set {
+    display: flex;
+  }
+
+  .sidebar--grid .sidebar__album-year {
+    width: 150px;
+    flex-shrink: 0;
+  }
+  
+}
+
+@media (min-width: 900px) {
   .sidebar--grid .sidebar__album-list {
       grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/*
+
  @media (min-width: 1200px) {
   .sidebar--grid .sidebar__album-list {
       grid-template-columns: repeat(6, 1fr);
   }
-}  */
+} 
