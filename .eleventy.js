@@ -102,7 +102,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setServerOptions({
     liveReload: true,
     domDiff: true,
-    port: 8080,
+    port: 3000,
     watch: [],
     showAllHosts: false
   });
