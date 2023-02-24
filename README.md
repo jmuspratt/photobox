@@ -43,8 +43,8 @@ deployphotos() {
 - [x] Break up album list by year
 - [x] JSON feed
 - [x] Hidden albums
-- [ ] Img `alt` text?
 
 ### Up Next?
 
 - [ ] Remove orphaned optimized videos on build
+- [ ] Method for adding alt` text to images?
