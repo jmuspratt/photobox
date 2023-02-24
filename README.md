@@ -47,4 +47,4 @@ deployphotos() {
 ### Up Next?
 
 - [ ] Remove orphaned optimized videos on build
-- [ ] Method for adding alt` text to images?
+- [ ] Method for adding `alt` text to images?
