@@ -5,10 +5,18 @@
   --c-asset-bg: rgba(255, 255, 255, 0.08);
   --c-border: rgba(255, 255, 255, 0.15);
   --c-gray: rgba(255, 255, 255, 0.375);
+  --c-accent: #96A8C2;
+
 
   --f-base: 16px / 1.5 Arial, sans-serif;
   --f-size: clamp(0.875rem, 2vw, 1rem);
   --site-padding: 8px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --site-padding: 18px;
+  }
 }
 
 /* Theming */
@@ -28,6 +36,8 @@
   --c-asset-bg: rgba(0, 0, 0, 0.08);
   }
 }
+
+
 
 
 /* https://developer.mozilla.org/en-US/docs/Web/Media/images/aspect_ratio_mapping */

@@ -29,7 +29,6 @@
         {% endif %}
 
         <li class="{{ itemClass }}">
-          <a class="sidebar__album-title" href="{{ url }}">{{ listAlbum.albumName }}</a>
           {% if listAlbum.firstImage and albumView == 'grid' %}
           {% set src = ["src/album-assets/", listAlbum.slug, '/', listAlbum.firstImage.fileName] | join %}
           {% set url = ["/albums/", listAlbum.slug ] | join%}
@@ -39,6 +38,7 @@
             </a>
           </div>
           {% endif %}
+          <a class="sidebar__album-title" href="{{ url }}">{{ listAlbum.albumName }}</a>
 
         </li>
 

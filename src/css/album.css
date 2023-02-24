@@ -12,14 +12,6 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
-.album__block:not(.album__block--image-portrait) {
-  grid-column: 1 / 3;
-}
-
-.album__block--text {
-  padding-top: 3.375em;
-}
-
 .album__head {
   color: var(--c-text-color);
   line-height: 1.2;
@@ -36,22 +28,28 @@
 }
 
 .album__block {
-  display: block;
   margin-bottom: var(--site-padding);
 }
+
+.album__block:not(.album__block--image-portrait) {
+  grid-column: 1 / 3;
+}
+
+.album__block--text {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 3.375em;
+  margin-bottom: 0;
+}
+
 
 .album__block--image {
   background-color: var(--c-asset-bg);
 }
 
 
-@media (min-width: 800px) {
-  .album__block--text {
-    align-items: baseline;
-    display: flex;
-    justify-content: space-between;
-  }
-}
+
 
 @media (min-width: 800px) {
   .album__text-date {
