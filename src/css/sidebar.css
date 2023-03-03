@@ -1,11 +1,3 @@
-.sidebar {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: flex-start;
-  overflow: auto;
-}
 
 .sidebar__title {
   font-size: var(--f-size);
@@ -22,9 +14,6 @@
   padding-right: 1em;
 }
 
-
-
-
 .sidebar__album-list {
   font-size: var(--f-size);
   list-style: none;
@@ -32,10 +21,24 @@
   padding: 0;
 }
 
-a.sidebar__album-title {
+.sidebar__album-item {
+  display: block;
+  width: 100%;
+}
+
+.sidebar--list .sidebar__album-year,
+.sidebar--list a.sidebar__album-title {
+  display: block;
+}
+
+.sidebar--list a.sidebar__album-title {
   color: var(--c-gray);
-  display: inline;
-  padding: 0;
+  padding: 5px 0;
+  border-top: solid 1px var(--c-border);
+}
+
+.sidebar--list .sidebar__album-item:last-child a.sidebar__album-title {
+  border-bottom: solid 1px var(--c-border);
 }
 
 a.sidebar__album-title:hover {
@@ -54,11 +57,23 @@ a.sidebar__album-title:hover {
 
 @media (min-width: 800px) {
   .sidebar {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
     margin-top: auto;
+    overflow: auto;
   }
 
   .sidebar__title {
     margin: 0 0 0.5em;
+  }
+
+  
+  .sidebar--list  a.sidebar__album-title {
+    border: 0 !important;
+    padding: 0;
   }
 
 }

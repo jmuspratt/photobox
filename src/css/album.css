@@ -115,14 +115,6 @@ a.album__text-date-link:hover {
 
   .album__main {
     margin-left: 20%;
-    width: 85%;
   }
 }
 
-@media (min-width: 1200px) {
-  .album__main {
-    margin-left: 20%;
-    margin-right: 10%;
-    width: 70%;
-  }
-}
