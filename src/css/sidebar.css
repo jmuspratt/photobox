@@ -26,13 +26,16 @@
   width: 100%;
 }
 
+a.sidebar__album-title  {
+  color: var(--c-gray);
+}
+
 .sidebar--list .sidebar__album-year,
 .sidebar--list a.sidebar__album-title {
   display: block;
 }
 
 .sidebar--list a.sidebar__album-title {
-  color: var(--c-gray);
   padding: 5px 0;
   border-top: solid 1px var(--c-border);
 }
