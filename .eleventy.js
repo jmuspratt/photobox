@@ -34,10 +34,10 @@ const path = require('path');
     const srcSet = metadata.jpeg.map(item=> item.srcset).join(', ');
 
     // Sizes
-    // Layout goes 85% width at 800px and 70% width at 800px
-    let sizes="(min-width: 1200px) calc(.70 * (100vw - 16px)), (min-width: 800px) calc(.85 * (100vw - 16px)), calc(100vw - 16px)";  // Landscape images
+    // Layout goes 80% width
+    let sizes="(min-width: 800px) calc(.80 * (100vw - 36px)), calc(100vw - 36px)";  // Landscape images
     if (isPortrait) {
-      sizes="(min-width: 1200px) calc(.5 * (100vw - 24px), (min-width: 800px) calc(.375 * (100vw - 24px), calc(.5 * (100vw - 24px))";  // Portrait images are half width
+      sizes="(min-width: 800px) calc(.40 * (100vw - 36px), calc(.5 * (100vw - 16px))";  // Portrait images are half width
     }
 
     return `
