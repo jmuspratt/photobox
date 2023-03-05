@@ -149,8 +149,9 @@ a.sidebar__album-title:hover {
   }
 
   .sidebar--grid .sidebar__album-year {
-    width: 150px;
     flex-shrink: 0;
+    padding-top: 0;
+    width: 20%;
   }
   
 }
