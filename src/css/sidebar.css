@@ -99,7 +99,7 @@ a.sidebar__album-title:hover {
 .sidebar--grid .sidebar__album-year {
   background: var(--c-bg);
   padding-top: 0.5em;
-  padding-bottom: 3em;;
+  padding-bottom: 3em;
   padding-right: 2em;
   line-height: 1;
   font-weight: 400;
