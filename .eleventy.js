@@ -7,7 +7,7 @@ const path = require('path');
   // https://www.11ty.dev/docs/plugins/image/#installation
 
   const Image = require("@11ty/eleventy-img");
-  async function imageShortcode(src, alt, htmlID) {
+  async function imageShortcode(src, alt, htmlID, context) {
     if(alt === undefined) {
       // Throw error on missing alt attribute (alt="" works okay)
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
@@ -34,11 +34,39 @@ const path = require('path');
     const srcSet = metadata.jpeg.map(item=> item.srcset).join(', ');
 
     // Sizes
-    // Layout goes 80% width
-    let sizes="(min-width: 800px) calc(.80 * (100vw - 36px)), calc(100vw - 36px)";  // Landscape images
-    if (isPortrait) {
-      sizes="(min-width: 800px) calc(.40 * (100vw - 36px), calc(.5 * (100vw - 16px))";  // Portrait images are half width
+
+    // Layout constants for calculating image sizes
+    const gutterMobile = 8;
+    const gutterDesktop = 18; // (at 600px)
+    const contentArea = .80;
+
+
+    let sizes;
+    // Thumbnails (grid view)
+    if (context == 'thumb') {
+      sizes=`
+        (min-width: 1200px) calc(1/6 * ${contentArea} * (100vw - ${gutterDesktop * 7}px)), 
+        (min-width: 900px)  calc(1/4 * ${contentArea} * (100vw - ${gutterDesktop * 5}px)), 
+        (min-width: 600px)  calc(1/2 * ${contentArea} * (100vw - ${gutterDesktop * 3}px)), 
+                            calc(100vw - ${gutterMobile * 3}px)
+      `;
     }
+    else {
+      // Album view: Layout goes 80% width (and vert images are 50 of that%)
+      // Landscape images
+      sizes=`
+        (min-width: 800px) calc(${contentArea} * (100vw - ${gutterMobile * 2})), 
+                           calc(100vw - ${gutterMobile * 2})
+      `; 
+      if (isPortrait) {
+        // Portrait images are half width
+        sizes=`
+          (min-width: 800px) calc(1/2 * ${contentArea} * (100vw - ${gutterDesktop * 3})), 
+          (min-width: 600px) calc(1/2 * (100vw - ${gutterDesktop * 3})), 
+                             calc(1/2 * (100vw - ${gutterMobile * 3}))
+        `;
+      }
+  }
 
     return `
     <div class="album__block album__block--image album__block--image-${isPortrait ? 'portrait': 'landscape'}" id="${htmlID}">

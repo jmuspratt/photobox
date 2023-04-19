@@ -35,7 +35,7 @@ permalink: "albums/{{ album.urlSlug }}/"
         {# Image #}
         {% if file.fileType == 'image' %}
             {% set src = ["src/album-assets/", album.slug, '/', file.fileName] | join %}
-            {% image src, "", file.fileID %}
+            {% image src, "", file.fileID, "album" %}
         {% endif %}
 
         {# Video #}
