@@ -63,16 +63,19 @@ a.sidebar__album-title:hover {
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: flex-start;
     margin-top: auto;
+    padding: 0 var(--site-padding);
+  }
+
+  .sidebar--list {
+    height: calc(100vh - 3 * var(--site-padding));
     overflow: auto;
   }
 
   .sidebar__title {
-    margin: 0 0 0.5em;
+    margin: -0.25em 0 0.5em;
   }
-
   
   .sidebar--list  a.sidebar__album-title {
     border: 0 !important;
@@ -87,7 +90,7 @@ a.sidebar__album-title:hover {
 }
 
 .sidebar--grid .sidebar__title {
-  margin-bottom: 4em;
+  margin-bottom: 2.75em;
 }
 
 

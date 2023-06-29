@@ -1,5 +1,5 @@
 .album {
-  margin: var(--site-padding);
+  margin: 0 var(--site-padding);
 }
 
 .album__block {
@@ -40,7 +40,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.375em;
-  padding-top: 2em;
+  padding-top: 3.75em;
 }
 
 
@@ -108,15 +108,18 @@ a.album__text-date-link:hover {
     flex-direction: column;
     height: 100%;
     order: 1;
+    padding-bottom: var(--site-padding);
+    padding-top: var(--site-padding);
     position: sticky;
-    padding: var(--site-padding) 0;
-    top: 2em;
+    top: 0;
     width: calc(20% - var(--site-padding));
   }
 
   .album__main {
-    width: 80%;
     order: 2;
+    padding-bottom: var(--site-padding);
+    padding-top: var(--site-padding);
+    width: 80%;
   }
 }
 

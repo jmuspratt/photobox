@@ -71,5 +71,5 @@ a:visited,
 button {
   color: var(--c-link);
   text-decoration: none;
-  transition: all 0.6s ease;
+  transition: opacity 0.6s ease, color 0.3s ease;
 }
