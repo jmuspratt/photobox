@@ -39,8 +39,8 @@
   align-items: baseline;
   display: flex;
   justify-content: space-between;
-  padding-top: 4em;
   margin-bottom: 0.375em;
+  padding-top: 2em;
 }
 
 
@@ -104,17 +104,19 @@ a.album__text-date-link:hover {
   }
 
   .album__aside {
-    height: 100%;
-    position: fixed;
-    padding: var(--site-padding) 0;
-    top: 0;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    order: 1;
+    position: sticky;
+    padding: var(--site-padding) 0;
+    top: 2em;
     width: calc(20% - var(--site-padding));
   }
 
   .album__main {
-    margin-left: 20%;
+    width: 80%;
+    order: 2;
   }
 }
 
