@@ -110,7 +110,7 @@ a.album__text-date-link:hover {
     top: 0;
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: calc(20% - var(--site-padding));
   }
 
   .album__main {
