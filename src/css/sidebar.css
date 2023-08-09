@@ -65,11 +65,13 @@ a.sidebar__album-title:hover {
     flex-direction: column;
     justify-content: flex-start;
     margin-top: auto;
-    padding: 0 var(--site-padding);
+    padding: 0;
   }
 
   .sidebar--list {
-    height: calc(100vh - 3 * var(--site-padding));
+    padding-bottom: var(--site-padding);
+    padding-top: var(--site-padding);
+    height: 100vh;
     overflow: auto;
   }
 
