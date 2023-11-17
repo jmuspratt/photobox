@@ -43,18 +43,14 @@
   padding-top: 3.75em;
 }
 
-
 .album__block--image {
   background-color: var(--c-asset-bg);
 }
 
-
-
-
-@media (min-width: 800px) {
-  .album__text-date {
+.album__text-date {
     text-align: right;
-  }
+    flex-shrink: 0;
+    margin-left: 1.5em;
 }
 
 a.album__text-date-link {
