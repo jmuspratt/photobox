@@ -29,7 +29,7 @@ A static site script that generates web albums from directories of images and vi
 ```
 #--------  rsync local photos to server, deleting anything not in the source
 deployphotos() {
-  rsync -apzPog --delete --filter=":- .gitignore" ~/Sites/photobox/dist/ username@123.456.78.90:/var/www/photos.example.com/html/
+  rsync -azP --delete --filter=":- .gitignore" ~/Sites/photobox/dist/ username@123.456.78.90:/var/www/photos.example.com/html/
 }
 ```
 
