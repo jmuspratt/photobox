@@ -92,7 +92,7 @@ async function imageShortcode(src, alt, htmlID, context) {
 // Feed shortcode (see feed.njk)
 async function feedImageShortcode(src, urlBase) {
   let metadata = await Image(src, {
-    widths: [1600],
+    widths: [2400],
     formats: ["jpeg"],
     outputDir: "./dist/img/",
     filenameFormat: (id, src, width, format, options) => {
