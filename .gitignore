@@ -1,4 +1,5 @@
 .DS_Store
+.npmrc
 dist
 node_modules
 src/_data/siteData.json

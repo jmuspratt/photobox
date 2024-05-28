@@ -4,7 +4,9 @@
   "scripts": {
     "build": "eleventy",
     "build-all": "eleventy && npm run video",
+    "deploy": "npm run build-all && npm run transfer",
     "start": "eleventy --serve",
+    "transfer": "rsync -azP --delete dist/ $npm_config_deploy_path",
     "video": "node convert-videos.js"
   },
   "devDependencies": {
