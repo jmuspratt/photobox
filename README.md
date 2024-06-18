@@ -24,13 +24,10 @@ A static site script that generates web albums from directories of images and vi
 
 1. Run `npm run build` to generate the site pages and optimized images.
 2. To build the site files _and_ process videos, run `npm run build-all`.
-3. Your site builds to the `/dist` directory. You can then sFTP the contents to your web server, or use rsync. If the latter, you can store the command as a function in your `.zshrc` file. It might look like this:
+3. Your site builds to the `/dist` directory. You can then sFTP the contents to your web server, or use rsync via `npm deploy`. If the latter, store your deploy path in an `.npmrc` like this:
 
 ```
-#--------  rsync local photos to server, deleting anything not in the source
-deployphotos() {
-  rsync -azP --delete --filter=":- .gitignore" ~/Sites/photobox/dist/ username@123.456.78.90:/var/www/photos.example.com/html/
-}
+deploy_path = username@123.456.78.90:/var/www/photos.example.com/html/
 ```
 
 ## Development roadmap
@@ -43,6 +40,7 @@ deployphotos() {
 - [x] Break up album list by year
 - [x] JSON feed
 - [x] Hidden albums
+- [x] Deploy via npm/rsync
 
 ### Up Next?
 
