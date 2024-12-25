@@ -1,3 +1,1 @@
-module.exports = {
-  projectDomain: process.env.PROJECT_DOMAIN
-};
+export const projectDomain = process.env.PROJECT_DOMAIN;

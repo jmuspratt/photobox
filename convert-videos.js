@@ -1,7 +1,7 @@
-const spawn = require("child_process").spawn;
-const fs = require("fs");
-const path = require("path");
-const scanLibrary = require("./scanLibrary.js");
+const spawn = import("child_process").spawn;
+const fs = import("fs");
+const path = import("path");
+const scanLibrary = import("./scanLibrary.js");
 
 // Find all videos with scanLibrary()
 const albumDirs = scanLibrary("src/album-assets/");

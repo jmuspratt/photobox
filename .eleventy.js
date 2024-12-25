@@ -1,14 +1,10 @@
-// docs: https://www.11ty.io/docs/config/
-const fs = require("fs");
-const path = require("path");
+import UpgradeHelper from "@11ty/eleventy-upgrade-help";
+import fs from "fs";
+import path from "path";
+import Image from "@11ty/eleventy-img";
 
-// Image processing
-// https://www.11ty.dev/docs/plugins/image/#installation
-
-const Image = require("@11ty/eleventy-img");
 async function imageShortcode(src, alt, htmlID, context) {
   if (alt === undefined) {
-    // Throw error on missing alt attribute (alt="" works okay)
     throw new Error(`Missing \`alt\` on myImage from: ${src}`);
   }
 
@@ -16,61 +12,50 @@ async function imageShortcode(src, alt, htmlID, context) {
     widths: [800, 2400],
     formats: ["jpeg"],
     outputDir: "./dist/img/",
-    filenameFormat: (id, src, width, format, options) => {
+    filenameFormat: (id, src, width, format) => {
       const extension = path.extname(src);
       const name = path.basename(src, extension);
       return `${name}__${width}.${format}`;
     },
   });
 
-  // Use metadata to determine several responsive image attributes
   const lowResImg = metadata.jpeg[0];
   const aspectRatio = (lowResImg.width / lowResImg.height).toFixed(4);
   const isPortrait = aspectRatio < 1;
 
-  // Srcset
   const srcSet = metadata.jpeg.map((item) => item.srcset).join(", ");
 
-  // Sizes
-
-  // Layout constants for calculating image sizes
   const gutterMobile = 8;
-  const gutterDesktop = 18; // (at 600px)
+  const gutterDesktop = 18;
   const contentArea = 0.8;
 
   let sizes;
-  // Thumbnails (grid view)
   if (context == "thumb") {
     sizes = `
-        (min-width: 1200px) calc(1/6 * ${contentArea} * (100vw - ${
+      (min-width: 1200px) calc(1/6 * ${contentArea} * (100vw - ${
       gutterDesktop * 7
     }px)), 
-        (min-width: 900px)  calc(1/4 * ${contentArea} * (100vw - ${
+      (min-width: 900px)  calc(1/4 * ${contentArea} * (100vw - ${
       gutterDesktop * 5
     }px)), 
-        (min-width: 600px)  calc(1/2 * ${contentArea} * (100vw - ${
+      (min-width: 600px)  calc(1/2 * ${contentArea} * (100vw - ${
       gutterDesktop * 3
     }px)), 
-                            calc(100vw - ${gutterMobile * 3}px)
-      `;
+                          calc(100vw - ${gutterMobile * 3}px)
+    `;
   } else {
-    // Album view: Layout goes 80% width (and vert images are 50 of that%)
-    // Landscape images
     sizes = `
-        (min-width: 800px) calc(${contentArea} * (100vw - ${
-      gutterMobile * 2
-    })), 
-                           calc(100vw - ${gutterMobile * 2})
-      `;
+      (min-width: 800px) calc(${contentArea} * (100vw - ${gutterMobile * 2})), 
+                         calc(100vw - ${gutterMobile * 2})
+    `;
     if (isPortrait) {
-      // Portrait images are half width
       sizes = `
-          (min-width: 800px) calc(1/2 * ${contentArea} * (100vw - ${
+        (min-width: 800px) calc(1/2 * ${contentArea} * (100vw - ${
         gutterDesktop * 3
       })), 
-          (min-width: 600px) calc(1/2 * (100vw - ${gutterDesktop * 3})), 
-                             calc(1/2 * (100vw - ${gutterMobile * 3}))
-        `;
+        (min-width: 600px) calc(1/2 * (100vw - ${gutterDesktop * 3})), 
+                           calc(1/2 * (100vw - ${gutterMobile * 3}))
+      `;
     }
   }
 
@@ -87,6 +72,10 @@ async function imageShortcode(src, alt, htmlID, context) {
         style="aspect-ratio: ${aspectRatio};"
         >
     </div>`;
+}
+
+function getBuildDateShortcode() {
+  return new Date().toISOString();
 }
 
 // Feed shortcode (see feed.njk)
@@ -125,11 +114,9 @@ async function ogImageShortcode(src, urlBase) {
     `;
 }
 
-function getBuildDateShortcode() {
-  return new Date().toISOString();
-}
+export default function (eleventyConfig) {
+  eleventyConfig.addPlugin(UpgradeHelper);
 
-module.exports = function (eleventyConfig) {
   eleventyConfig.setServerOptions({
     liveReload: true,
     domDiff: true,
@@ -145,7 +132,6 @@ module.exports = function (eleventyConfig) {
 
   // Add shortcodes
   eleventyConfig.addNunjucksShortcode("getBuildDate", getBuildDateShortcode);
-
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("feedImageSrc", feedImageShortcode);
@@ -158,4 +144,4 @@ module.exports = function (eleventyConfig) {
       output: "dist",
     },
   };
-};
+}
