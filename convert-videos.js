@@ -1,7 +1,7 @@
-const spawn = import("child_process").spawn;
-const fs = import("fs");
-const path = import("path");
-const scanLibrary = import("./scanLibrary.js");
+import { spawn } from "child_process";
+import fs from "fs";
+import path from "path";
+import scanLibrary from "./scanLibrary.js"; // Assuming this is an ESM export
 
 // Find all videos with scanLibrary()
 const albumDirs = scanLibrary("src/album-assets/");
@@ -20,7 +20,7 @@ function getOutputPath(video) {
 function resizeVideo(video, quality) {
   const outputPath = getOutputPath(video);
 
-  const p = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     console.log("Converting...", video.fileName);
     const ffmpeg = spawn("ffmpeg", [
       "-i",
@@ -39,30 +39,43 @@ function resizeVideo(video, quality) {
       "faststart",
       outputPath,
     ]);
+
     ffmpeg.stderr.on("data", (data) => {
       console.log(`${data}`);
     });
+
     ffmpeg.on("close", (code) => {
-      resolve();
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`FFmpeg process exited with code ${code}`));
+      }
     });
   });
-  return p;
 }
 
 function processVideos() {
-  let video = videos.pop();
+  if (videos.length === 0) {
+    console.log("All videos processed.");
+    return;
+  }
 
-  if (video) {
-    const outputPath = getOutputPath(video);
-    if (fs.existsSync(outputPath)) {
-      console.log(`Video already exists at ${outputPath}`);
-      processVideos();
-    } else {
-      resizeVideo(video, 720).then(() => {
+  const video = videos.pop();
+  const outputPath = getOutputPath(video);
+
+  if (fs.existsSync(outputPath)) {
+    console.log(`Video already exists at ${outputPath}`);
+    processVideos();
+  } else {
+    resizeVideo(video, 720)
+      .then(() => {
         console.log(`Video processed and saved to ${outputPath}`);
         processVideos();
+      })
+      .catch((error) => {
+        console.error(`Error processing video ${video.fileName}:`, error);
+        processVideos();
       });
-    }
   }
 }
 
