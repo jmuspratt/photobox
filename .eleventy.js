@@ -1,4 +1,3 @@
-import UpgradeHelper from "@11ty/eleventy-upgrade-help";
 import fs from "fs";
 import path from "path";
 import Image from "@11ty/eleventy-img";
@@ -115,8 +114,6 @@ async function ogImageShortcode(src, urlBase) {
 }
 
 export default function (eleventyConfig) {
-  eleventyConfig.addPlugin(UpgradeHelper);
-
   eleventyConfig.setServerOptions({
     liveReload: true,
     domDiff: true,
