@@ -1,4 +1,5 @@
 .DS_Store
+.env
 .npmrc
 dist
 node_modules
