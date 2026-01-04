@@ -2,6 +2,7 @@
 @import "global.css";
 @import "sidebar.css";
 @import "album.css";
+@import "album-grid.css";
 
 .home {
     padding: var(--site-padding);

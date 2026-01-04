@@ -30,17 +30,17 @@ a.sidebar__album-title  {
   color: var(--c-gray);
 }
 
-.sidebar--list .sidebar__album-year,
-.sidebar--list a.sidebar__album-title {
+.sidebar__album-year,
+a.sidebar__album-title {
   display: block;
 }
 
-.sidebar--list a.sidebar__album-title {
+a.sidebar__album-title {
   padding: 5px 0;
   border-top: solid 1px var(--c-border);
 }
 
-.sidebar--list .sidebar__album-item:last-child a.sidebar__album-title {
+.sidebar__album-item:last-child a.sidebar__album-title {
   border-bottom: solid 1px var(--c-border);
 }
 
@@ -65,13 +65,8 @@ a.sidebar__album-title:hover {
     flex-direction: column;
     justify-content: flex-start;
     margin-top: auto;
-    padding: 0;
-  }
-
-  .sidebar--list {
-    padding-bottom: var(--site-padding);
-    padding-top: var(--site-padding);
     height: 100vh;
+    padding: var(--site-padding) 0;
     overflow: auto;
   }
 
@@ -79,35 +74,17 @@ a.sidebar__album-title:hover {
     margin: -0.25em 0 0.5em;
   }
   
-  .sidebar--list  a.sidebar__album-title {
+  a.sidebar__album-title {
     border: 0 !important;
     padding: 0;
   }
 
 }
 
-/* Grid variant (with thumbnails, for homepage) */
-.sidebar--grid  {
-  display: block;
-}
-
-.sidebar--grid .sidebar__title {
-  margin-bottom: 2.75em;
-}
-
 
 .sidebar__album-image {
   opacity: 0.8;
   transition: opacity 0.5s ease;  
-}
-
-.sidebar--grid .sidebar__album-year {
-  background: var(--c-bg);
-  padding-top: 0.5em;
-  padding-bottom: 3em;
-  padding-right: 2em;
-  line-height: 1;
-  font-weight: 400;
 }
 
 
@@ -122,59 +99,3 @@ a.sidebar__album-title:hover {
 }
 
 
-.sidebar--grid .sidebar__album-title {
-  display: block;
-}
-
-.sidebar--grid .sidebar__album-list {
-  display: grid;
-  grid-column-gap: var(--site-padding);
-  grid-row-gap: calc(2 * var(--site-padding));
-  grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 6em;
-  text-indent: 0;
-}
-
-.sidebar--grid .album__block--image {
-  border-radius: 5px;
-  margin-bottom: 0.5em;
-  overflow: hidden;
-}
-
-.sidebar--grid .album__block--image img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
- @media (min-width: 600px) {
-
-  .sidebar--grid .sidebar__album-set {
-    display: flex;
-  }
-
-  .sidebar--grid .sidebar__album-year {
-    flex-shrink: 0;
-    padding-top: 0;
-    width: 20%;
-  }
-
-  .sidebar--grid .sidebar__album-list {
-    width: 80%;
-  }
-
-  
-}
-
-@media (min-width: 900px) {
-  .sidebar--grid .sidebar__album-list {
-      grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-
- @media (min-width: 1200px) {
-  .sidebar--grid .sidebar__album-list {
-      grid-template-columns: repeat(6, 1fr);
-  }
-} 

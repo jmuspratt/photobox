@@ -1,0 +1,44 @@
+<div class="album-grid">
+    <h1 class="album-grid__title">
+        <a href="/">{{ siteData.title }}</a>
+    </h1>
+    {# Don't show albums if we're in a hidden album #}
+    {% if album.albumHidden %}
+        <p class="album-grid__hidden-note">This is a hidden album.</p>
+        <p class="album-grid__hidden-note">See the
+            <a href="{{ siteData.url }}">home page</a>
+            for public albums.</p>
+    {% else %}
+        {% for listAlbum in albums %}
+            {# Don't list hidden albums #}
+            {% if not listAlbum.albumHidden %}
+                {# Set classes #}
+                {% set newYear = lastAlbumYear != listAlbum.albumYear %}
+                {% set itemClass = 'album-grid__album-item' %}
+                {% if listAlbum.slug == album.slug %}
+                    {% set itemClass = 'album-grid__album-item album-grid__album-item--active' %}
+                {% endif %}
+                {% if newYear %}
+                    {% if not loop.first %}
+                    </ul>
+                </div>
+                <!-- /album-set -->
+            {% endif %}
+            <div class="album-grid__album-set">
+                <h3 class="album-grid__album-year">{{ listAlbum.albumYear }}</h3>
+                <ul class="album-grid__album-list">
+                {% endif %}
+                <li class="{{ itemClass }}">
+                    {% set src = ["src/album-assets/", listAlbum.slug, '/', listAlbum.firstImage.fileName] | join %}
+                    {% set url = ["/albums/", listAlbum.slug ] | join %}
+                    <div class="album-grid__album-image">
+                        {% image src, "", file.fileID, "thumb" %}
+                    </div>
+                    <a class="album-grid__album-title" href="{{ url }}">{{ listAlbum.albumName }}</a>
+                </li>
+                {% set lastAlbumYear = listAlbum.albumYear %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+<!-- /album-set -->{% endif %}</div>

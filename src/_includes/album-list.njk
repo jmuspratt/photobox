@@ -1,55 +1,41 @@
-<div class="sidebar sidebar--{{ albumView }}">
+<div class="sidebar sidebar">
   <h1 class="sidebar__title">
     <a href="/">{{ siteData.title }}</a>
   </h1>
-
   {# Don't show albums if we're in a hidden album #}
   {% if album.albumHidden %}
     <p class="sidebar__hidden-note">This is a hidden album.</p>
-    <p class="sidebar__hidden-note">See the <a href="{{ siteData.url }}">home page</a> for public albums.</p>
-  {% else  %}
-
+    <p class="sidebar__hidden-note">See the
+      <a href="{{ siteData.url }}">home page</a>
+      for public albums.</p>
+  {% else %}
     {% for listAlbum in albums %}
       {# Don't list hidden albums #}
       {% if not listAlbum.albumHidden %}
-
         {# Set classes #}
         {% set newYear = lastAlbumYear != listAlbum.albumYear %}
         {% set itemClass = 'sidebar__album-item' %}
-        {% if listAlbum.slug == album.slug  %}
+        {% if listAlbum.slug == album.slug %}
           {% set itemClass = 'sidebar__album-item sidebar__album-item--active' %}
         {% endif %}
-
         {% if newYear %}
           {% if not loop.first %}
-            </ul>
-            </div> <!-- /album-set -->
-          {% endif %}
-          <div class="sidebar__album-set">
-            <h3 class="sidebar__album-year">{{ listAlbum.albumYear }}</h3>
-            <ul class="sidebar__album-list">
-          {% endif %}
-
-            <li class="{{ itemClass }}">
-              {% set src = ["src/album-assets/", listAlbum.slug, '/', listAlbum.firstImage.fileName] | join %}
-              {% set url = ["/albums/", listAlbum.slug ] | join %}
-            
-              {% if listAlbum.firstImage and albumView == 'grid' %}
-              <div class="sidebar__album-image">
-                <a href="{{ url }}">{% image src, "", file.fileID, "thumb" %}</a>
-              </div>
-              {% endif %}
-
-              <a class="sidebar__album-title" href="{{ url }}">{{ listAlbum.albumName }}</a>
-            
-            </li>
-
+          </ul>
+        </div>
+        <!-- /album-set -->
+      {% endif %}
+      <div class="sidebar__album-set">
+        <h3 class="sidebar__album-year">{{ listAlbum.albumYear }}</h3>
+        <ul class="sidebar__album-list">
+        {% endif %}
+        <li class="{{ itemClass }}">
+          {% set src = ["src/album-assets/", listAlbum.slug, '/', listAlbum.firstImage.fileName] | join %}
+          {% set url = ["/albums/", listAlbum.slug ] | join %}
+          <a class="sidebar__album-title" href="{{ url }}">{{ listAlbum.albumName }}</a>
+        </li>
         {% set lastAlbumYear = listAlbum.albumYear %}
-
       {% endif %}
     {% endfor %}
-    </ul>
-    </div> <!-- /album-set -->
-
-  {% endif %}
+  </ul>
 </div>
+<!-- /album-set -->{% endif %}</div>
