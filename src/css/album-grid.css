@@ -170,24 +170,40 @@ a.album-grid__album-title:hover {
 
   .album-grid__album-set {
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .album-grid__album-year {
     flex-shrink: 0;
     padding-top: 0;
+    position: sticky;
+    top: var(--site-padding);
     width: 20%;
   }
 
   .album-grid__album-list {
     width: 80%;
-      grid-template-columns: repeat(3, 1fr);
-
+    
   }
 }
 
 @media (min-width: 800px) {
   .album-grid__album-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .album-grid__album-list {
       grid-template-columns: repeat(4, 1fr);
   }
 }
 
+
+@media (min-width: 1800px) {
+  .album-grid__album-list {
+      grid-template-columns: repeat(6, 1fr);
+  }
+}
