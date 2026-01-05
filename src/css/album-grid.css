@@ -119,17 +119,13 @@ a.album-grid__album-title:hover {
   z-index: 3;
 }
 
-
 .album-grid__album-title,
 .album-grid__album-date {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  color: var(--c-gray);
   display: -webkit-box;
-  gap: 1em;
+  gap: 0.5em;
   font-size: var(--f-size-sm);
   margin: 0;
-  color: var(--c-gray);
   overflow: hidden;
   text-overflow: ellipsis;
   width: 50%;
@@ -142,6 +138,7 @@ a.album-grid__album-title:hover {
 .album-grid__album-date {
   display: block;
   text-align: right;
+  white-space: nowrap;
 }
 
 .album-grid__album-image-wrap {
@@ -151,17 +148,15 @@ a.album-grid__album-title:hover {
   justify-content: center;
 }
 
-
 .album-grid__album-image {
+  align-items: center;
   display: flex;
   justify-content: center;
-  transition: opacity 0.5s ease;  
-  opacity: 0.8;
-  align-items: center;
-  width: 50%;
   height: 50%;
+  opacity: 0.8;
+  width: 50%;
+  transition: opacity 0.5s ease;  
 }
-
 
 .album-grid__album-image .album__block {
   background-color: transparent;
@@ -169,7 +164,6 @@ a.album-grid__album-title:hover {
   height: 100%;
   display: block;
   position: relative;
-  opacity: 0.8;
   overflow: hidden;
   margin: 0;
   z-index: 2;
