@@ -6,10 +6,10 @@
   --c-border: rgba(255, 255, 255, 0.15);
   --c-gray: rgba(255, 255, 255, 0.375);
   --c-accent: #7E95B5;
-
-
   --f-base: 16px / 1.5 Arial, sans-serif;
   --f-size: clamp(0.875rem, 2vw, 1rem);
+  --f-size-sm: 12.5px;
+
   --site-padding: 8px;
 }
 

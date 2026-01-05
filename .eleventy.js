@@ -77,6 +77,15 @@ function getBuildDateShortcode() {
   return new Date().toISOString();
 }
 
+function formatDateFilter(dateObj, options) {
+  const date = new Date(dateObj);
+  const formatOptions = options || {
+    year: "numeric",
+    month: "long",
+  };
+  return date.toLocaleDateString("en-US", formatOptions);
+}
+
 // Feed shortcode (see feed.njk)
 async function feedImageShortcode(src, urlBase) {
   let metadata = await Image(src, {
@@ -128,6 +137,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/robots.txt");
 
   // Add shortcodes
+  eleventyConfig.addNunjucksFilter("formatDate", formatDateFilter);
   eleventyConfig.addNunjucksShortcode("getBuildDate", getBuildDateShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
