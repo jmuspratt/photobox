@@ -155,6 +155,8 @@ a.album-grid__album-title:hover {
 .album-grid__album-image {
   display: flex;
   justify-content: center;
+  transition: opacity 0.5s ease;  
+  opacity: 0.8;
   align-items: center;
   width: 50%;
   height: 50%;
@@ -168,7 +170,6 @@ a.album-grid__album-title:hover {
   display: block;
   position: relative;
   opacity: 0.8;
-  transition: opacity 0.5s ease;  
   overflow: hidden;
   margin: 0;
   z-index: 2;
