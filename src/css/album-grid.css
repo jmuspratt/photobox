@@ -152,10 +152,11 @@ a.album-grid__album-title:hover {
   align-items: center;
   display: flex;
   justify-content: center;
-  height: 50%;
+  height: 65%;
   opacity: 0.8;
-  width: 50%;
-  transition: opacity 0.5s ease;  
+  transition: opacity 0.5s ease;
+  width: 65%;
+  will-change: opacity;
 }
 
 .album-grid__album-image .album__block {
