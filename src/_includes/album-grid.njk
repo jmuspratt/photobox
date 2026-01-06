@@ -2,12 +2,11 @@
     <h1 class="album-grid__title">
         <a href="/">{{ siteData.title }}</a>
     </h1>
-    {# Don't show albums if we're in a hidden album #}
-    {% for listAlbum in albums %}
+    {% for album in albums %}
         {# Don't list hidden albums #}
-        {% if not listAlbum.albumHidden %}
+        {% if not album.albumHidden %}
             {# Set classes #}
-            {% set newYear = lastAlbumYear != listAlbum.albumYear %}
+            {% set newYear = lastAlbumYear != album.albumYear %}
             {% if newYear %}
                 {% if not loop.first %}
                 </ul>
@@ -15,23 +14,25 @@
             <!-- /album-set -->
         {% endif %}
         <div class="album-grid__album-set">
-            <h3 class="album-grid__album-year">{{ listAlbum.albumYear }}</h3>
+            <h3 class="album-grid__album-year">{{ album.albumYear }}</h3>
             <ul class="album-grid__album-list">
             {% endif %}
             <li class="album-grid__album-item">
-                {% set src = ["src/album-assets/", listAlbum.slug, '/', listAlbum.firstImage.fileName] | join %}
-                {% set url = ["/albums/", listAlbum.slug ] | join %}
-                <div class="album-grid__album-image-wrap">
-                    <div class="album-grid__album-image">
-                        {% image src, "", file.fileID, "thumb" %}
-                    </div>
+                {% set src = ["src/album-assets/", album.slug, '/', album.firstImage.fileName] | join %}
+                {% set url = ["/albums/", album.slug ] | join %}
+                <div class="album-grid__album-image">
+                    {% image src, "", file.fileID, "thumb" %}
                 </div>
                 <div class="album-grid__album-text">
-                    <a class="album-grid__album-title" href="{{ url }}">{{ listAlbum.albumName }}</a>
-                    <p class="album-grid__album-date">{{ listAlbum.albumDate | formatDate() }}</p>
+                    <p class="album-grid__album-title-date">
+                        <a class="album-grid__album-title" href="{{ url }}">{{ album.albumName }}</a>
+                        <span class="album-grid__album-date">{{ album.albumDate | formatDate() }}
+                        </span>
+                    </p>
+                    <span class="album-grid__album-count">{{ album.files | length }}</span>
                 </div>
             </li>
-            {% set lastAlbumYear = listAlbum.albumYear %}
+            {% set lastAlbumYear = album.albumYear %}
         {% endif %}
     {% endfor %}
 </ul></div><!-- /album-set --></div>
