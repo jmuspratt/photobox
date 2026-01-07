@@ -58,6 +58,10 @@ table {
   width: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--c-bg);
   color: var(--c-text);
