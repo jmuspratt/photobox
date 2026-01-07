@@ -23,6 +23,7 @@
 [data-theme="light"] {
   --c-bg: #eee;
   --c-gray: rgba(0, 0, 0, 0.3);
+  --c-border: rgba(0, 0, 0, 0.15);
   --c-text: #000;
   --c-link: #000;
   --c-asset-bg: rgba(0, 0, 0, 0.08);
@@ -30,6 +31,7 @@
 @media (prefers-color-scheme: light) {
   [data-theme="system"] {
   --c-bg: #eee;
+  --c-border: rgba(0, 0, 0, 0.15);
   --c-gray: rgba(0, 0, 0, 0.3);
   --c-text: #000;
   --c-link: #000;

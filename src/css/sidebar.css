@@ -52,6 +52,27 @@ a.sidebar__album-title:hover {
   color: var(--c-link);
 }
 
+.sidebar__album-jump-list {
+  border-left: solid 1px var(--c-border);
+  list-style: none;
+  margin: 0.25em 0;
+  padding: 0 0 0 0.5em;
+}
+
+.sidebar__album-jump-item {
+  font-size: var(--f-size-sm);
+
+}
+.sidebar__album-jump-item a {
+  display: inline-block;;e;
+  padding: 0.125em 0;
+}
+.sidebar__album-jump-item a:hover,
+.sidebar__album-jump-item a:focus {
+  /* color: var(--c-text); */
+  text-decoration: underline;
+}
+
 .sidebar__hidden-note {
   color: var(--c-gray);
   font-size: 80%;

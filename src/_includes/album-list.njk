@@ -32,10 +32,20 @@
           {% set src = ["src/album-assets/", listAlbum.slug, '/', listAlbum.firstImage.fileName] | join %}
           {% set url = ["/albums/", listAlbum.slug ] | join %}
           <a class="sidebar__album-title" href="{{ url }}">{{ listAlbum.albumName }}</a>
+          {# Jump links if item is active#}
+          {% set jumpLinks = listAlbum.files | filter('fileType', 'text') %}
+          {% if jumpLinks | length and  listAlbum.slug == album.slug %}
+            <ul class="sidebar__album-jump-list">
+              {% for jumpLink in jumpLinks %}
+                <li class="sidebar__album-jump-item">
+                  <a href="#{{ jumpLink.fileID }}">{{ jumpLink.textHeading }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </li>
         {% set lastAlbumYear = listAlbum.albumYear %}
       {% endif %}
     {% endfor %}
   </ul>
-</div>
-<!-- /album-set -->{% endif %}</div>
+</div><!-- /album-set -->{% endif %}</div>

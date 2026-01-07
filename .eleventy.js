@@ -138,6 +138,10 @@ export default function (eleventyConfig) {
 
   // Add shortcodes
   eleventyConfig.addNunjucksFilter("formatDate", formatDateFilter);
+  eleventyConfig.addFilter("filter", (arr, key, value) => {
+    if (!arr || !Array.isArray(arr)) return [];
+    return arr.filter((item) => item[key] === value);
+  });
   eleventyConfig.addNunjucksShortcode("getBuildDate", getBuildDateShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
   eleventyConfig.addNunjucksAsyncShortcode("ogImage", ogImageShortcode);
