@@ -182,47 +182,54 @@ a.album-grid__album-title:hover {
 
 
  @media (min-width: 600px) {
-  .album-grid__album-year {
-      padding-bottom: 3em;
-  }
-
+ 
   .album-grid__album-set {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    align-items: start;
+    gap: var(--site-padding);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
-
+  
   .album-grid__album-year {
-    flex-shrink: 0;
+    padding-bottom: 3em;
     padding-top: 0;
     position: sticky;
     top: var(--site-padding);
-    width: 20%;
   }
 
   .album-grid__album-list {
-    width: 80%;
-    
+    gap: var(--site-padding);
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span 2;
   }
 }
 
 @media (min-width: 800px) {
-  .album-grid__album-list {
-    grid-template-columns: repeat(3, 1fr);
+  .album-grid__album-set {
+    grid-template-columns: repeat(4, 1fr);
   }
-
+  .album-grid__album-list {
+    grid-column: span 3;
+  }
 }
 
 
 @media (min-width: 1200px) {
+  .album-grid__album-set {
+      grid-template-columns: repeat(6, 1fr);
+  }
   .album-grid__album-list {
-      grid-template-columns: repeat(4, 1fr);
+    grid-column: span 5;
   }
 }
 
 
 @media (min-width: 1800px) {
+  .album-grid__album-set {
+      grid-template-columns: repeat(8, 1fr);
+  }
   .album-grid__album-list {
-      grid-template-columns: repeat(6, 1fr);
+    grid-column: span 6;
   }
 }

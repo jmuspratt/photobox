@@ -92,28 +92,58 @@ a.album__text-date-link:hover {
   color: var(--c-link);
 }
 
-@media (min-width: 800px) {
+
+
+@media (min-width: 600px) {
   .album {
-    align-items: stretch;
-    display: flex;
-    justify-content: space-between;
+    align-items: start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--site-padding);
   }
 
   .album__aside {
     display: flex;
     flex-direction: column;
-    height: 100%;
     order: 1;
     position: sticky;
     top: 0;
-    width: calc(20% - var(--site-padding));
+    grid-column: span 1;
   }
 
   .album__main {
     order: 2;
     padding-bottom: var(--site-padding);
     padding-top: var(--site-padding);
-    width: 80%;
+    grid-column: span 2;
   }
 }
 
+
+@media (min-width: 800px) {
+  .album {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .album__main {
+    grid-column: span 3;
+  }
+
+}
+
+@media (min-width: 1200px) {
+.album {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .album__main {
+    grid-column: span 5;
+  }
+}
+
+@media (min-width: 1800px) {
+.album {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .album__main {
+    grid-column: span 6;
+  }
+}

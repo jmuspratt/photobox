@@ -86,7 +86,7 @@ a.sidebar__album-title:hover {
   padding-right: 2em;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 600px) {
   .sidebar {
     align-items: flex-start;
     display: flex;
