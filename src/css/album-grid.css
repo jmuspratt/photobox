@@ -83,6 +83,7 @@ a.album-grid__album-title:hover {
     overflow: hidden;
 }
 
+/* Background */
 .album-grid__album-item::before {
   background-color: var(--c-asset-bg);
   border-radius: 10px;
@@ -96,6 +97,29 @@ a.album-grid__album-title:hover {
   width: 100%;
   z-index: 1;
 }  
+
+/* Dot */
+.album-grid__album-item::after {
+  background-color: var(--c-text);
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 6px;
+  position: absolute;
+  pointer-events: none;
+  right: 10px;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  top: 10px;
+  width: 6px;
+  z-index: 3;
+}
+
+.album-grid__album-item:hover::after,
+.album-grid__album-item:focus::after {
+  transform: scale(1);
+}
+
 
 
 .album-grid__album-text {
