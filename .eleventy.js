@@ -2,6 +2,28 @@ import fs from "fs";
 import path from "path";
 import Image from "@11ty/eleventy-img";
 
+let totalImages = 0;
+let processedImages = 0;
+let lastLoggedPct = -1;
+
+function countSourceImages() {
+  const albumsPath = path.resolve(process.cwd(), "src/album-assets");
+  const imageExts = new Set(["jpg", "jpeg"]);
+  try {
+    const dirs = fs.readdirSync(albumsPath).filter((d) => !d.startsWith("."));
+    return dirs.reduce((sum, dir) => {
+      try {
+        const files = fs.readdirSync(path.join(albumsPath, dir));
+        return sum + files.filter((f) => imageExts.has(path.extname(f).toLowerCase().slice(1))).length;
+      } catch {
+        return sum;
+      }
+    }, 0);
+  } catch {
+    return 0;
+  }
+}
+
 async function imageShortcode(src, alt, htmlID, context) {
   if (alt === undefined) {
     throw new Error(`Missing \`alt\` on myImage from: ${src}`);
@@ -18,6 +40,15 @@ async function imageShortcode(src, alt, htmlID, context) {
       return `${name}__${width}.${format}`;
     },
   });
+
+  if (totalImages > 0) {
+    processedImages++;
+    const pct = Math.min(Math.floor((processedImages / totalImages) * 100), 100);
+    if (pct >= lastLoggedPct + 5 || processedImages === totalImages) {
+      lastLoggedPct = pct;
+      console.log(`[image] ${processedImages}/${totalImages} (${pct}%)`);
+    }
+  }
 
   const lowResImg = metadata.jpeg[0];
   const aspectRatio = (lowResImg.width / lowResImg.height).toFixed(4);
@@ -126,6 +157,13 @@ async function ogImageShortcode(src, urlBase) {
 }
 
 export default function (eleventyConfig) {
+  eleventyConfig.on("eleventy.before", () => {
+    totalImages = countSourceImages();
+    processedImages = 0;
+    lastLoggedPct = -1;
+    if (totalImages > 0) console.log(`[image] 0/${totalImages} (0%)`);
+  });
+
   eleventyConfig.setServerOptions({
     liveReload: true,
     domDiff: true,
