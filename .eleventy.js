@@ -11,6 +11,7 @@ async function imageShortcode(src, alt, htmlID, context) {
     widths: [800, 2400],
     formats: ["jpeg"],
     outputDir: "./dist/img/",
+    concurrency: 4,
     filenameFormat: (id, src, width, format) => {
       const extension = path.extname(src);
       const name = path.basename(src, extension);
@@ -92,6 +93,7 @@ async function feedImageShortcode(src, urlBase) {
     widths: [2400],
     formats: ["jpeg"],
     outputDir: "./dist/img/",
+    concurrency: 4,
     filenameFormat: (id, src, width, format, options) => {
       const extension = path.extname(src);
       const name = path.basename(src, extension);
@@ -108,6 +110,7 @@ async function ogImageShortcode(src, urlBase) {
     widths: [800],
     formats: ["jpeg"],
     outputDir: "./dist/img/",
+    concurrency: 4,
     filenameFormat: (id, src, width, format, options) => {
       const extension = path.extname(src);
       const name = path.basename(src, extension);

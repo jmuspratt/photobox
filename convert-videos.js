@@ -17,6 +17,8 @@ function getOutputPath(video) {
 
 // https://blog.founderatwork.com/how-to-batch-process-video-conversions-using-ffmpeg-with-node-js/
 // https://gist.github.com/rick4470/0e051cbceae6fd591fd3c02a8ab417cc
+const MAX_CONCURRENT = 3;
+
 function resizeVideo(video, quality) {
   const outputPath = getOutputPath(video);
 
@@ -32,7 +34,7 @@ function resizeVideo(video, quality) {
       "-vf",
       `scale=-2:${quality}`,
       "-preset",
-      "veryslow",
+      "slow",
       "-tag:v",
       "hvc1",
       "-movflags",
@@ -54,29 +56,30 @@ function resizeVideo(video, quality) {
   });
 }
 
-function processVideos() {
-  if (videos.length === 0) {
+async function processVideos() {
+  const pending = videos.filter((v) => !fs.existsSync(getOutputPath(v)));
+  const skipped = videos.length - pending.length;
+
+  if (skipped > 0) console.log(`Skipping ${skipped} already-converted videos.`);
+  if (pending.length === 0) {
     console.log("All videos processed.");
     return;
   }
 
-  const video = videos.pop();
-  const outputPath = getOutputPath(video);
+  console.log(`Encoding ${pending.length} videos (${MAX_CONCURRENT} at a time)...`);
 
-  if (fs.existsSync(outputPath)) {
-    console.log(`Video already exists at ${outputPath}`);
-    processVideos();
-  } else {
-    resizeVideo(video, 720)
-      .then(() => {
-        console.log(`Video processed and saved to ${outputPath}`);
-        processVideos();
-      })
-      .catch((error) => {
-        console.error(`Error processing video ${video.fileName}:`, error);
-        processVideos();
-      });
+  for (let i = 0; i < pending.length; i += MAX_CONCURRENT) {
+    const batch = pending.slice(i, i + MAX_CONCURRENT);
+    await Promise.all(
+      batch.map((video) =>
+        resizeVideo(video, 720)
+          .then(() => console.log(`Done: ${video.fileName}`))
+          .catch((err) => console.error(`Error on ${video.fileName}:`, err))
+      )
+    );
   }
+
+  console.log("All videos processed.");
 }
 
 processVideos();

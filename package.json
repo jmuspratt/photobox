@@ -6,7 +6,7 @@
     "build": "eleventy",
     "build-all": "eleventy && npm run video",
     "build-deploy": "npm run build-all && npm run deploy",
-    "start": "eleventy --serve",
+    "start": "eleventy --serve --incremental",
     "deploy": "./scripts/deploy.sh",
     "video": "node convert-videos.js"
   },
