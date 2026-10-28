@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { spawn, spawnSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import scanLibrary from "./scanLibrary.js"; // Assuming this is an ESM export
@@ -19,6 +19,31 @@ function getOutputPath(video) {
 // https://gist.github.com/rick4470/0e051cbceae6fd591fd3c02a8ab417cc
 const MAX_CONCURRENT = 3;
 
+// iPhone videos can include a spatial audio track (APAC) that ffmpeg can't
+// decode. ffmpeg picks it by default (most channels), so map the first
+// audio stream with a known codec instead.
+function getAudioMap(video) {
+  const probe = spawnSync("ffprobe", [
+    "-v",
+    "error",
+    "-select_streams",
+    "a",
+    "-show_entries",
+    "stream=index,codec_name",
+    "-of",
+    "csv=p=0",
+    video.filePath,
+  ]);
+  const streams = probe.stdout
+    .toString()
+    .trim()
+    .split("\n")
+    .filter(Boolean)
+    .map((line) => line.split(","));
+  const playable = streams.find(([, codec]) => codec && codec !== "unknown");
+  return playable ? ["-map", `0:${playable[0]}`] : [];
+}
+
 function resizeVideo(video, quality) {
   const outputPath = getOutputPath(video);
 
@@ -27,6 +52,9 @@ function resizeVideo(video, quality) {
     const ffmpeg = spawn("ffmpeg", [
       "-i",
       video.filePath,
+      "-map",
+      "0:v:0",
+      ...getAudioMap(video),
       "-c:v",
       "libx265",
       "-crf",
