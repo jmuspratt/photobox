@@ -18,11 +18,14 @@
             <ul class="album-grid__album-list">
             {% endif %}
             <li class="album-grid__album-item">
-                {% set src = ["src/album-assets/", album.slug, '/', album.firstImage.fileName] | join %}
                 {% set url = ["/albums/", album.slug ] | join %}
-                <div class="album-grid__album-image">
-                    {% image src, "", file.fileID, "thumb" %}
-                </div>
+                {# Albums with no photos (e.g. video-only) get no thumbnail #}
+                {% if album.firstImage %}
+                    {% set src = ["src/album-assets/", album.slug, '/', album.firstImage.fileName] | join %}
+                    <div class="album-grid__album-image">
+                        {% image src, "", album.firstImage.fileID, "thumb" %}
+                    </div>
+                {% endif %}
                 <div class="album-grid__album-text">
                     <p class="album-grid__album-title-date">
                         <a class="album-grid__album-title" href="{{ url }}">{{ album.albumName }}</a>
